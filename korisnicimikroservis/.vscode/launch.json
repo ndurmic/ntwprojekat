@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - KorisniciMikroservis",
+            "request": "launch",
+            "mainClass": "etf.nwt.korisnicimikroservis.KorisniciMikroservis",
+            "projectName": "korisnicimikroservis"
+        }
+    ]
+}

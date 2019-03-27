@@ -1,25 +1,46 @@
-package etf.nwt.korisnicimikroservis;
+package etf.nwt.korisnicimikroservis.Models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "korisnici")
 public class KorisnikModel {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
     private Integer id;
+	@Column(name="email")
 	private String email;
+	@Column(name="username")
 	private String username;
+	@Column(name="password")
 	private String password;
+	@Column(name="ime")
 	private String ime;
+	@Column(name="prezime")
 	private String prezime;
+	@Column(name="rola")
 	private String rola;
-	// fali blob
-	public KorisnikModel() {
+	@Lob
+	@Column(name="slika")
+	private byte[] slika;
+	
+	public KorisnikModel(String email, String username, String password, String ime, String prezime,
+			String rola, byte[] slika) {
 		super();
-		// TODO Auto-generated constructor stub
+		this.email = email;
+		this.username = username;
+		this.password = password;
+		this.ime = ime;
+		this.prezime = prezime;
+		this.rola = rola;
+		this.slika = slika;
 	}
 	public Integer getId() {
 		return id;
