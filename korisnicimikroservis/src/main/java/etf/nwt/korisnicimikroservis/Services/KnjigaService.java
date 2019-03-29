@@ -6,22 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import etf.nwt.korisnicimikroservis.Models.KnjigaModel;
+import etf.nwt.korisnicimikroservis.Models.KorisnikModel;
 import etf.nwt.korisnicimikroservis.Repositories.KnjigaRepository;
+
 @Service
 public class KnjigaService {
 
-	
 	@Autowired
 	KnjigaRepository knjigaRepositori;
-	
+
 	public Iterable<KnjigaModel> findAll() {
 		return knjigaRepositori.findAll();
 	}
-	
+
 	public Optional<KnjigaModel> findById(int id) {
 		return knjigaRepositori.findById(id);
 	}
-	
+
 	public String addKnjiga(KnjigaModel k) {
 		try {
 			knjigaRepositori.save(k);
@@ -29,5 +30,17 @@ public class KnjigaService {
 			return e.toString();
 		}
 		return "Radi";
+	}
+
+	public char[] addKorisnik(KorisnikModel korisnik) {
+		return null;
+	}
+
+	public char[] addKorisnik(KorisnikModel korisnik) {
+		return null;
+	}
+
+	public char[] addKorisnik(KorisnikModel korisnik) {
+		return null;
 	}
 }

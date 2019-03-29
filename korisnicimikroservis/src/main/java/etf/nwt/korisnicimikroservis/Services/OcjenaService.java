@@ -7,29 +7,46 @@ import org.springframework.stereotype.Service;
 
 import etf.nwt.korisnicimikroservis.Models.OcjenaModel;
 import etf.nwt.korisnicimikroservis.Repositories.OcjenaRepository;
+
 @Service
 public class OcjenaService {
-	
 
-		@Autowired
-		OcjenaRepository ocjenaRepositori;
-		
-		public Iterable<OcjenaModel> findAll() {
-			return ocjenaRepositori.findAll();
+	@Autowired
+	OcjenaRepository ocjenaRepositori;
+
+	public Iterable<OcjenaModel> findAll() {
+		return ocjenaRepositori.findAll();
+	}
+
+	public Optional<OcjenaModel> findById(int id) {
+		return ocjenaRepositori.findById(id);
+	}
+
+	public String addOcjena(OcjenaModel k) {
+		try {
+			ocjenaRepositori.save(k);
+		} catch (Exception e) {
+			return e.toString();
 		}
-		
-		public Optional<OcjenaModel> findById(int id) {
-			return ocjenaRepositori.findById(id);
+		return "Radi";
+	}
+
+	public String azurirajOcjenu(OcjenaModel ocjena, int id) {
+		try {
+			ocjenaRepositori.save(ocjena);
+		} catch (Exception e) {
+			return e.toString();
 		}
-		
-		public String addOcjena(OcjenaModel k) {
-			try {
-				ocjenaRepositori.save(k);
-			} catch (Exception e) {
-				return e.toString();
-			}
-			return "Radi";
+		return "Radi";
+	}
+
+	public String obrisiOcjenu(Integer id) {
+		try {
+			ocjenaRepositori.deleteById(id);
+		} catch (Exception e) {
+			return e.toString();
 		}
-	
+		return "Radi";
+	}
 
 }
