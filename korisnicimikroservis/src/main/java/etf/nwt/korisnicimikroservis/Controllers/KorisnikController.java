@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import etf.nwt.korisnicimikroservis.Services.KorisnikService;
 import etf.nwt.korisnicimikroservis.Models.*;
 
+@RestController
 public class KorisnikController {
     // korisnici
     // korisnici/id
@@ -21,12 +24,12 @@ public class KorisnikController {
     @Autowired
     private KorisnikService korisnikService;
 
-    @RequestMapping("/korisnici")
-    public List<KorisnikModel> listaSvihKorisnika() {
-        return (List<KorisnikModel>) korisnikService.findAll();
+    @RequestMapping(method = RequestMethod.GET, value = "/korisnici")
+    public Iterable<KorisnikModel> listaSvihKorisnika() {
+        return korisnikService.findAll();
     }
 
-    @RequestMapping("/korisnici/{id}")
+    @RequestMapping(method = RequestMethod.GET, value = "/korisnici/{id}")
     public Optional<KorisnikModel> dajKorisnika(@PathVariable Integer id) {
         return korisnikService.findById(id);
     }

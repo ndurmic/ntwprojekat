@@ -38,6 +38,11 @@ public class OcjenaModel {
 		this.korisnik = korisnik;
 	}
 
+	public OcjenaModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Integer getId() {
 		return id;
 	}

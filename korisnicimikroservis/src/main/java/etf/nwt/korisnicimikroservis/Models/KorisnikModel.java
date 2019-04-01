@@ -14,15 +14,15 @@ import javax.validation.constraints.Pattern;
 public class KorisnikModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
+	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 	@Pattern(regexp = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,6}$")
-	@Column(name = "email")
+	@Column(name = "email", unique = true)
 	private String email;
 	@Pattern(regexp = "^[a-zA-Z0-9._-]{3,}$")
 	@Column(name = "username")
 	private String username;
-	@Pattern(regexp = "^(?=.*[a-z])(?=.*[@#$%])(?=.*[A-Z]).{6,16}$")
+	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{7,20}$")
 	@Column(name = "password")
 	private String password;
 	@Pattern(regexp = "[A-Z][a-z]*")
@@ -48,6 +48,13 @@ public class KorisnikModel {
 		this.rola = rola;
 		this.slika = i;
 	}
+	
+
+	public KorisnikModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 
 	public Integer getId() {
 		return id;

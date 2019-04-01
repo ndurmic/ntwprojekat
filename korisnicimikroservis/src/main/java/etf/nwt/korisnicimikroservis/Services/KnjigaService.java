@@ -31,16 +31,4 @@ public class KnjigaService {
 		}
 		return "Radi";
 	}
-
-	public char[] addKorisnik(KorisnikModel korisnik) {
-		return null;
-	}
-
-	public char[] addKorisnik(KorisnikModel korisnik) {
-		return null;
-	}
-
-	public char[] addKorisnik(KorisnikModel korisnik) {
-		return null;
-	}
 }

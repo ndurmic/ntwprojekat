@@ -36,6 +36,11 @@ public class KnjigaModel {
 		this.id_autoraKnjige = id_autoraKnjige;
 	}
 
+	public KnjigaModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Integer getId() {
 		return id;
 	}
