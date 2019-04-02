@@ -52,4 +52,14 @@ public class KnjigaController {
         knjigaService.obrisiKnjigu(id);
     }
 
+    @RequestMapping("/knjige/kategorije/{naziv}")
+    public List<Optional<Knjiga>> knjigePoKategoriji (@PathVariable String naziv){
+        return   knjigaService.knjigePoKategoriji(naziv);
+    }
+
+    @RequestMapping("/knjige/autori/{naziv}")
+    public List<Optional<Knjiga>> knjigePoAutoru (@PathVariable String naziv){
+        return   knjigaService.knjigePoAutoru(naziv);
+    }
+
 }

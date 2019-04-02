@@ -55,4 +55,5 @@ public class KategorijaController {
         kategorijaService.obrisiKategoriju(id);
     }
 
+
 }

@@ -2,8 +2,10 @@ package etf.nwt.knjigemikroservis.service;
 
 //Creating a  Spring business service
 
+import etf.nwt.knjigemikroservis.model.Autor;
 import etf.nwt.knjigemikroservis.model.Kategorija;
 import etf.nwt.knjigemikroservis.model.Knjiga;
+import etf.nwt.knjigemikroservis.repository.AutorRepository;
 import etf.nwt.knjigemikroservis.repository.KategorijaRepository;
 import etf.nwt.knjigemikroservis.repository.KnjigaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,10 @@ public class KnjigaService {
 
         @Autowired
         private KnjigaRepository knjigaRepository;
+        @Autowired
+        private KategorijaRepository kategorijaRepository;
+        @Autowired
+        private AutorRepository autorRepository;
 
         public List<Knjiga> listaSvihKnjiga(){
             List<Knjiga> knjige = new ArrayList<>();
@@ -41,6 +47,30 @@ public class KnjigaService {
 
         public void obrisiKnjigu(Integer id){
             knjigaRepository.deleteById(id);
+        }
+
+        public List<Optional<Knjiga>> knjigePoKategoriji(String naziv){
+            List<Optional<Knjiga>> knjige = new ArrayList<>();
+            List<Kategorija> listaKategorija = new ArrayList<>();
+            kategorijaRepository.findByNaziv(naziv).forEach(listaKategorija::add);
+
+            for(int i=0;i<listaKategorija.size();i++)
+            {
+                knjige.add(knjigaRepository.findById(listaKategorija.get(i).getKnjiga_id()));
+            }
+            return  knjige;
+        }
+
+        public List<Optional<Knjiga>> knjigePoAutoru(String naziv){
+            List<Optional<Knjiga>> knjige = new ArrayList<>();
+            List<Autor> listaAutora = new ArrayList<>();
+            autorRepository.findByIme(naziv).forEach(listaAutora::add);
+
+            for(int i=0;i<listaAutora.size();i++)
+            {
+                knjige.add(knjigaRepository.findByListaKnjigaContains(listaAutora.get(i)));
+            }
+            return  knjige;
         }
 
 
