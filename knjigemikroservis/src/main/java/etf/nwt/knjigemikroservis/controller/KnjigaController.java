@@ -4,8 +4,10 @@ import etf.nwt.knjigemikroservis.model.Kategorija;
 import etf.nwt.knjigemikroservis.model.Knjiga;
 import etf.nwt.knjigemikroservis.service.KnjigaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,13 +28,23 @@ public class KnjigaController {
     }
 
     @RequestMapping(method= RequestMethod.POST, value="/knjige")
-    public void dodajKnjigu(@RequestBody Knjiga knjiga) {
-        knjigaService.dodajKnjigu(knjiga);
+    public void dodajKnjigu(@RequestBody @Valid Knjiga knjiga, Errors errors) {
+        if(errors.hasErrors()){
+            System.out.println(errors.getAllErrors());
+        }
+        else{
+            knjigaService.dodajKnjigu(knjiga);
+        }
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/knjige/{id}")
-    public void azurirajKnjigu(@RequestBody Knjiga knjiga, @PathVariable Integer id) {
-        knjigaService.azurirajKnjigu(knjiga, id);
+    public void azurirajKnjigu(@RequestBody @Valid Knjiga knjiga, @PathVariable Integer id, Errors errors) {
+        if(errors.hasErrors()){
+            System.out.println(errors.getAllErrors());
+        }
+        else{
+            knjigaService.azurirajKnjigu(knjiga, id);
+        }
     }
 
     @RequestMapping(method=RequestMethod.DELETE, value="/knjige/{id}")

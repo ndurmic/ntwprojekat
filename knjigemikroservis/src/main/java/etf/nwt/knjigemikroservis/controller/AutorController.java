@@ -4,8 +4,10 @@ package etf.nwt.knjigemikroservis.controller;
 import etf.nwt.knjigemikroservis.model.Autor;
 import etf.nwt.knjigemikroservis.service.AutorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,13 +28,27 @@ public class AutorController {
     }
 
     @RequestMapping(method= RequestMethod.POST, value="/autori")
-    public void dodajAutora(@RequestBody Autor autor) {
-        autorService.dodajAutora(autor);
+    public void dodajAutora(@RequestBody @Valid Autor autor, Errors errors) {
+
+        if(errors.hasErrors()){
+            System.out.println(errors.getAllErrors());
+        }
+        else{
+            autorService.dodajAutora(autor);
+        }
+
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/autori/{id}")
-    public void azurirajAutora(@RequestBody Autor autor, @PathVariable Integer id) {
-        autorService.azurirajAutora(autor, id);
+    public void azurirajAutora(@RequestBody @Valid Autor autor, @PathVariable Integer id, Errors errors) {
+
+        if(errors.hasErrors()){
+            System.out.println(errors.getAllErrors());
+        }
+        else{
+            autorService.azurirajAutora(autor, id);
+        }
+
     }
 
     @RequestMapping(method=RequestMethod.DELETE, value="/autori/{id}")
