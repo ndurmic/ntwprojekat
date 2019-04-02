@@ -1,5 +1,6 @@
 package etf.nwt.knjigemikroservis.controller;
 
+import etf.nwt.knjigemikroservis.model.Kategorija;
 import etf.nwt.knjigemikroservis.model.Knjiga;
 import etf.nwt.knjigemikroservis.service.KnjigaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class KnjigaController {
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/knjige/{id}")
-    public void azurirajKnjigu(@RequestBody Knjiga knjiga, @PathVariable int id) {
+    public void azurirajKnjigu(@RequestBody Knjiga knjiga, @PathVariable Integer id) {
         knjigaService.azurirajKnjigu(knjiga, id);
     }
 

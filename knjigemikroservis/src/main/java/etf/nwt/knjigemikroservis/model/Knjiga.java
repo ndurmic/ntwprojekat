@@ -1,9 +1,6 @@
 package etf.nwt.knjigemikroservis.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -15,25 +12,22 @@ public class Knjiga {
     private String naslov;
     private String opis;
     private String datumIzdavanja;
-    private Integer id_kategorije;
-    private Integer id_autorKnjige;
-    private Integer id_kolekcijeKnjige;
 
-    public Knjiga(Integer id, String naslov, String opis, String datumIzdavanja, Integer id_kategorije, Integer id_autorKnjige, Integer id_kolekcijeKnjige) {
-        this.id = id;
+
+    @ManyToOne
+    private Kategorija kategorija;
+
+    public Knjiga(String naslov, String opis, String datumIzdavanja) {
         this.naslov = naslov;
         this.opis = opis;
         this.datumIzdavanja = datumIzdavanja;
-        this.id_kategorije = id_kategorije;
-        this.id_autorKnjige = id_autorKnjige;
-        this.id_kolekcijeKnjige = id_kolekcijeKnjige;
     }
 
     public Knjiga() {
 
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -65,27 +59,5 @@ public class Knjiga {
         this.datumIzdavanja = datumIzdavanja;
     }
 
-    public int getId_kategorije() {
-        return id_kategorije;
-    }
 
-    public void setId_kategorije(Integer id_kategorije) {
-        this.id_kategorije = id_kategorije;
-    }
-
-    public int getId_autorKnjige() {
-        return id_autorKnjige;
-    }
-
-    public void setId_autorKnjige(Integer id_autorKnjige) {
-        this.id_autorKnjige = id_autorKnjige;
-    }
-
-    public int getId_kolekcijeKnjige() {
-        return id_kolekcijeKnjige;
-    }
-
-    public void setId_kolekcijeKnjige(Integer id_kolekcijeKnjige) {
-        this.id_kolekcijeKnjige = id_kolekcijeKnjige;
-    }
 }
