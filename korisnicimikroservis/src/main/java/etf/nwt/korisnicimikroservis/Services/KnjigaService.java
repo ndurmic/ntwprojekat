@@ -27,8 +27,9 @@ public class KnjigaService {
 		try {
 			knjigaRepositori.save(k);
 		} catch (Exception e) {
-			return e.toString();
+			//return e.toString();
+			return "Nisu podaci validni";
 		}
-		return "Radi";
+		return "Knjiga uspješno dodana";
 	}
 }

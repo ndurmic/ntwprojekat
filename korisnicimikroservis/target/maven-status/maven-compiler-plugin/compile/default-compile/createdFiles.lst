@@ -1,0 +1,13 @@
+etf\nwt\korisnicimikroservis\Models\KorisnikModel.class
+etf\nwt\korisnicimikroservis\Repositories\KnjigaRepository.class
+etf\nwt\korisnicimikroservis\Services\KorisnikService.class
+etf\nwt\korisnicimikroservis\Controllers\KorisnikController.class
+etf\nwt\korisnicimikroservis\KorisniciMikroservis.class
+etf\nwt\korisnicimikroservis\Controllers\OcjenaController.class
+etf\nwt\korisnicimikroservis\Controllers\KnjigaController.class
+etf\nwt\korisnicimikroservis\Repositories\KorisnikRepository.class
+etf\nwt\korisnicimikroservis\Models\KnjigaModel.class
+etf\nwt\korisnicimikroservis\Services\KnjigaService.class
+etf\nwt\korisnicimikroservis\Repositories\OcjenaRepository.class
+etf\nwt\korisnicimikroservis\Models\OcjenaModel.class
+etf\nwt\korisnicimikroservis\Services\OcjenaService.class

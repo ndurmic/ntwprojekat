@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
 @Entity
@@ -17,9 +19,10 @@ public class OcjenaModel {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", unique = true)
 	private Integer id;
-	@Pattern(regexp = "^([1-5])$")
+	@Min(1)
+	@Max(5)
 	@Column(name = "ocjena")
-	private Double ocjena;
+	private Integer ocjena;
 	@Column(name = "komentar")
 	private String komentar;
 
@@ -30,7 +33,7 @@ public class OcjenaModel {
 	@JoinColumn(name = "id_korisnika", referencedColumnName = "id", nullable = true)
 	private KorisnikModel korisnik;
 
-	public OcjenaModel(Double ocjena, String komentar, KnjigaModel knjiga, KorisnikModel korisnik) {
+	public OcjenaModel(Integer ocjena, String komentar, KnjigaModel knjiga, KorisnikModel korisnik) {
 		super();
 		this.ocjena = ocjena;
 		this.komentar = komentar;
@@ -51,11 +54,11 @@ public class OcjenaModel {
 		this.id = id;
 	}
 
-	public Double getOcjena() {
+	public Integer getOcjena() {
 		return ocjena;
 	}
 
-	public void setOcjena(Double ocjena) {
+	public void setOcjena(Integer ocjena) {
 		this.ocjena = ocjena;
 	}
 
@@ -65,6 +68,22 @@ public class OcjenaModel {
 
 	public void setKomentar(String komentar) {
 		this.komentar = komentar;
+	}
+
+	public KnjigaModel getKnjiga() {
+		return knjiga;
+	}
+
+	public void setKnjiga(KnjigaModel knjiga) {
+		this.knjiga = knjiga;
+	}
+
+	public KorisnikModel getKorisnik() {
+		return korisnik;
+	}
+
+	public void setKorisnik(KorisnikModel korisnik) {
+		this.korisnik = korisnik;
 	}
 
 }

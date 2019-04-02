@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import etf.nwt.korisnicimikroservis.Services.KorisnikService;
+import etf.nwt.korisnicimikroservis.Services.OcjenaService;
 import etf.nwt.korisnicimikroservis.Models.*;
 
 @RestController
@@ -23,6 +24,8 @@ public class KorisnikController {
     // azurirajkorisnika
     @Autowired
     private KorisnikService korisnikService;
+    @Autowired
+    private OcjenaService ocjenaService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/korisnici")
     public Iterable<KorisnikModel> listaSvihKorisnika() {
@@ -35,17 +38,22 @@ public class KorisnikController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/dodajkorisnika")
-    public void dodajKorisnika(@RequestBody KorisnikModel korisnik) {
-        korisnikService.addKorisnik(korisnik);
+    public String dodajKorisnika(@RequestBody KorisnikModel korisnik) {
+        return korisnikService.addKorisnik(korisnik);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/azurirajkorisnika/{id}")
-    public void azurirajKorisnika(@RequestBody KorisnikModel korisnik, @PathVariable int id) {
-        korisnikService.azurirajKorisnika(korisnik, id);
+    public String azurirajKorisnika(@RequestBody KorisnikModel korisnik, @PathVariable int id) {
+        return korisnikService.azurirajKorisnika(korisnik, id);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/obrisikorisnika/{id}")
-    public void obrisiKorisnika(@PathVariable Integer id) {
-        korisnikService.obrisiKorisnika(id);
+    public String obrisiKorisnika(@PathVariable Integer id) {
+    	List<OcjenaModel> ocjene = (List<OcjenaModel>) ocjenaService.findAll();
+    	for(OcjenaModel x : ocjene) {
+    		if(x.getKorisnik().getId().equals(id))
+    		ocjenaService.obrisiOcjenu(x.getId());
+    	}
+        return korisnikService.obrisiKorisnika(id);
     }
 }

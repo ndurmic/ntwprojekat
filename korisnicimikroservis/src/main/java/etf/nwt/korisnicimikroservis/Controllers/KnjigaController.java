@@ -32,8 +32,8 @@ public class KnjigaController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/dodajknjigu")
-    public void dodajKnjigu(@RequestBody KnjigaModel knjiga) {
-        knjigaService.addKnjiga(knjiga);
+    public String dodajKnjigu(@RequestBody KnjigaModel knjiga) {
+        return knjigaService.addKnjiga(knjiga);
     }
 
 }

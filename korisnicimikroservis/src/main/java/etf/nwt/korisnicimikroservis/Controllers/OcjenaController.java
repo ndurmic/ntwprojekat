@@ -35,17 +35,17 @@ public class OcjenaController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/dodajocjenu")
-    public void dodajOcjenu(@RequestBody OcjenaModel ocjena) {
-        ocjenaService.addOcjena(ocjena);
+    public String dodajOcjenu(@RequestBody OcjenaModel ocjena) {
+        return ocjenaService.addOcjena(ocjena);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/azurirajocjenu/{id}")
-    public void azurirajOcjenu(@RequestBody OcjenaModel ocjena, @PathVariable int id) {
-        ocjenaService.azurirajOcjenu(ocjena, id);
+    public String azurirajOcjenu(@RequestBody OcjenaModel ocjena, @PathVariable int id) {
+        return ocjenaService.azurirajOcjenu(ocjena, id);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/obrisiocjenu/{id}")
-    public void obrisiOcjenu(@PathVariable Integer id) {
-        ocjenaService.obrisiOcjenu(id);
+    public String obrisiOcjenu(@PathVariable Integer id) {
+        return ocjenaService.obrisiOcjenu(id);
     }
 }
