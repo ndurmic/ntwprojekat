@@ -19,7 +19,7 @@ public class KolekcijeservisApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		knjigaRepository.save(new Knjiga(1,"test","test", new Date(), 1, 1));
+		knjigaRepository.save(new Knjiga(2,"test2","test2", new Date(), 1, 1));
 
 	}
 
