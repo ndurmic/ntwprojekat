@@ -42,6 +42,7 @@ public class KnjigaService {
         public void azurirajKnjigu (Knjiga knjiga, Integer id){
             //JPA prepozna ako nema objekta onda ce ga dodati, ako ima azurirat ce ga u zavisnosti od ID koji se nalazi u entitetu
             //Zbog toga nema potrebe za metodom update, save radi oboje
+            knjiga.setId(id);
             knjigaRepository.save(knjiga);
         }
 
@@ -61,7 +62,7 @@ public class KnjigaService {
             return  knjige;
         }
 
-        public List<Optional<Knjiga>> knjigePoAutoru(String naziv){
+       /* public List<Optional<Knjiga>> knjigePoAutoru(String naziv){
             List<Optional<Knjiga>> knjige = new ArrayList<>();
             List<Autor> listaAutora = new ArrayList<>();
             autorRepository.findByIme(naziv).forEach(listaAutora::add);
@@ -71,7 +72,7 @@ public class KnjigaService {
                 knjige.add(knjigaRepository.findByListaKnjigaContains(listaAutora.get(i)));
             }
             return  knjige;
-        }
+        }*/
 
 
 

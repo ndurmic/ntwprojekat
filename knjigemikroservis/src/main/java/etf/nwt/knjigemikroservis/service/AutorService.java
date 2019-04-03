@@ -35,6 +35,7 @@ public class AutorService {
     public void azurirajAutora (Autor autor, Integer id){
         //JPA prepozna ako nema objekta onda ce ga dodati, ako ima azurirat ce ga u zavisnosti od ID koji se nalazi u entitetu
         //Zbog toga nema potrebe za metodom update, save radi oboje
+        autor.setId(id);
         autorRepository.save(autor);
     }
 

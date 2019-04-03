@@ -22,7 +22,7 @@ public class AutorController {
         return   autorService.listaSvihAutora();
     }
 
-    @RequestMapping("/autor/{id}")
+    @RequestMapping("/autori/{id}")
     public Optional<Autor> dajAutora (@PathVariable Integer id){
         return   autorService.dajAutora(id);
     }

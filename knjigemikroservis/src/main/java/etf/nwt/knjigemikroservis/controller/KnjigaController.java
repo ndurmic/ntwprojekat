@@ -57,9 +57,9 @@ public class KnjigaController {
         return   knjigaService.knjigePoKategoriji(naziv);
     }
 
-    @RequestMapping("/knjige/autori/{naziv}")
+    /*@RequestMapping("/knjige/autori/{naziv}")
     public List<Optional<Knjiga>> knjigePoAutoru (@PathVariable String naziv){
         return   knjigaService.knjigePoAutoru(naziv);
-    }
+    }*/
 
 }

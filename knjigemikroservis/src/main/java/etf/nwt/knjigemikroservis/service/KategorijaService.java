@@ -33,6 +33,7 @@ public class KategorijaService {
     public void azurirajKategoriju (Kategorija kategorija, Integer id){
         //JPA prepozna ako nema objekta onda ce ga dodati, ako ima azurirat ce ga u zavisnosti od ID koji se nalazi u entitetu
         //Zbog toga nema potrebe za metodom update, save radi oboje
+        kategorija.setId(id);
         kategorijaRepository.save(kategorija);
     }
 
