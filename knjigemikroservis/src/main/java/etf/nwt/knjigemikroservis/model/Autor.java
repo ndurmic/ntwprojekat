@@ -1,5 +1,7 @@
 package etf.nwt.knjigemikroservis.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
@@ -20,6 +22,7 @@ public class Autor {
     private String biografija;
 
     @ManyToMany(mappedBy = "listaAutora")
+    @JsonIgnore
     private List<Knjiga> listaKnjiga;
 
     public Autor(String ime, String prezime, String datumRodjenja, String biografija) {
