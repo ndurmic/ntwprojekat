@@ -49,4 +49,10 @@ public class KnjigaKolekcija   {
     public void setKnjiga(Knjiga knjiga) {
         this.knjiga = knjiga;
     }
+
+    public KnjigaKolekcija(int id, Kolekcija kolekcija, Knjiga knjiga) {
+        this.id = id;
+        this.kolekcija = kolekcija;
+        this.knjiga = knjiga;
+    }
 }

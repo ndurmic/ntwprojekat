@@ -19,6 +19,19 @@ public class Kolekcija {
     private String naziv;
     private String opis;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+    private Date datumKreiranja;
+
+    private int kolekcijaVidljiva;
+    private String Kolekcijecol;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "idKorisnika", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Korisnik korisnik;
+
     public int getId() {
         return id;
     }
@@ -75,17 +88,15 @@ public class Kolekcija {
         this.korisnik = korisnik;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
-    private Date datumKreiranja;
+    public Kolekcija(){}
 
-    private int kolekcijaVidljiva;
-    private String Kolekcijecol;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idKorisnika", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private Korisnik korisnik;
-
+    public Kolekcija(int id, String naziv, String opis, Date datumKreiranja, int kolekcijaVidljiva, String kolekcijecol, Korisnik korisnik) {
+        this.id = id;
+        this.naziv = naziv;
+        this.opis = opis;
+        this.datumKreiranja = datumKreiranja;
+        this.kolekcijaVidljiva = kolekcijaVidljiva;
+        Kolekcijecol = kolekcijecol;
+        this.korisnik = korisnik;
+    }
 }

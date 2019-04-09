@@ -6,6 +6,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -22,6 +23,7 @@ public class Knjiga {
     @Temporal(TemporalType.TIMESTAMP)
     private Date datumIzdavanja;
 
+    private int id_kategorije;
     private int id_autorKnjige;
 
     public int getId_kategorije() {
@@ -31,8 +33,6 @@ public class Knjiga {
     public void setId_kategorije(int id_kategorije) {
         this.id_kategorije = id_kategorije;
     }
-
-    private int id_kategorije;
 
     public int getId(){return id;}
     public void setId(int id){this.id=id;}

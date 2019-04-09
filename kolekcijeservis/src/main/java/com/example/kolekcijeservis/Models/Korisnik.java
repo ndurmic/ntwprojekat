@@ -12,12 +12,15 @@ public class Korisnik {
     @Column(name = "id")
     private int id;
 
-    @Email
+    //@Email
     private String email;
 
     private String username;
     private String password;
     private String ime;
+    private String prezime;
+    private byte[] slika;
+    private String rola;
 
     public int getId() {
         return id;
@@ -83,7 +86,16 @@ public class Korisnik {
         this.rola = rola;
     }
 
-    private String prezime;
-    private byte[] slika;
-    private String rola;
+    public Korisnik(){}
+
+    public Korisnik(int id, String email, String username, String password, String ime, String prezime, byte[] slika, String rola) {
+        this.id = id;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.ime = ime;
+        this.prezime = prezime;
+        this.slika = slika;
+        this.rola = rola;
+    }
 }
