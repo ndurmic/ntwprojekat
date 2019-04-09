@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 import etf.nwt.korisnicimikroservis.Models.KnjigaModel;
 import etf.nwt.korisnicimikroservis.Models.KorisnikModel;
@@ -19,6 +20,7 @@ import etf.nwt.korisnicimikroservis.Services.OcjenaService;
  *
  */
 @SpringBootApplication
+@EnableEurekaClient
 public class KorisniciMikroservis implements CommandLineRunner {
 	@Autowired
 	OcjenaService ocjenaServis;
