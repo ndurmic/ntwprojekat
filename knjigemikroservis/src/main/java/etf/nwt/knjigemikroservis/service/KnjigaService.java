@@ -2,9 +2,7 @@ package etf.nwt.knjigemikroservis.service;
 
 //Creating a  Spring business service
 
-import etf.nwt.knjigemikroservis.model.Autor;
-import etf.nwt.knjigemikroservis.model.Kategorija;
-import etf.nwt.knjigemikroservis.model.Knjiga;
+import etf.nwt.knjigemikroservis.model.*;
 import etf.nwt.knjigemikroservis.repository.AutorRepository;
 import etf.nwt.knjigemikroservis.repository.KategorijaRepository;
 import etf.nwt.knjigemikroservis.repository.KnjigaRepository;
@@ -60,6 +58,18 @@ public class KnjigaService {
                 knjige.add(knjigaRepository.findById(listaKategorija.get(i).getKnjiga_id()));
             }
             return  knjige;
+        }
+
+        public List<Ocjena> sveOcjeneKnjige(Knjiga knjiga){
+            Korisnik korisnik = new Korisnik("email@email.com","username","12345678","Neko","Nekic","basic");
+
+            List<Ocjena> ocjene = Arrays.asList(
+                new Ocjena(3,"Komentar 1",knjiga,korisnik),
+                new Ocjena(4,"Komentar 1",knjiga,korisnik),
+                new Ocjena(5,"Komentar 1",knjiga,korisnik)
+            );
+
+            return ocjene;
         }
 
        /* public List<Optional<Knjiga>> knjigePoAutoru(String naziv){
