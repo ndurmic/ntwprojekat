@@ -8,5 +8,4 @@ import java.util.Optional;
 
 public interface KnjigaRepository extends CrudRepository<Knjiga,Integer> {
 
-    //Optional<Knjiga> findByListaKnjigaContains(Autor autor);
 }

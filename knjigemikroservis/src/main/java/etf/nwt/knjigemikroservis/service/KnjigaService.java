@@ -55,36 +55,16 @@ public class KnjigaService {
 
             for(int i=0;i<listaKategorija.size();i++)
             {
-                knjige.add(knjigaRepository.findById(listaKategorija.get(i).getKnjiga_id()));
+               // knjige.add(knjigaRepository.findById(listaKategorija.get(i)));
             }
             return  knjige;
         }
 
-        public List<Ocjena> sveOcjeneKnjige(Knjiga knjiga){
-            Korisnik korisnik = new Korisnik("email@email.com","username","12345678","Neko","Nekic","basic");
 
-            List<Ocjena> ocjene = Arrays.asList(
-                new Ocjena(3,"Komentar 1",knjiga,korisnik),
-                new Ocjena(4,"Komentar 1",knjiga,korisnik),
-                new Ocjena(5,"Komentar 1",knjiga,korisnik)
-            );
+        //Najpopularnije ocjene - u korisnicima
 
-            return ocjene;
-        }
+        //Najapopularniji autori u kolekcijama
 
-       /* public List<Optional<Knjiga>> knjigePoAutoru(String naziv){
-            List<Optional<Knjiga>> knjige = new ArrayList<>();
-            List<Autor> listaAutora = new ArrayList<>();
-            autorRepository.findByIme(naziv).forEach(listaAutora::add);
-
-            for(int i=0;i<listaAutora.size();i++)
-            {
-                knjige.add(knjigaRepository.findByListaKnjigaContains(listaAutora.get(i)));
-            }
-            return  knjige;
-        }*/
-
-
-
+        //Najpopularnije knjige u kolekcijama
 
 }

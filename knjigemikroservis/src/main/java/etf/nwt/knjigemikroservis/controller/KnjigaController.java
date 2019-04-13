@@ -1,9 +1,6 @@
 package etf.nwt.knjigemikroservis.controller;
 
-import etf.nwt.knjigemikroservis.model.Kategorija;
 import etf.nwt.knjigemikroservis.model.Knjiga;
-import etf.nwt.knjigemikroservis.model.Korisnik;
-import etf.nwt.knjigemikroservis.model.Ocjena;
 import etf.nwt.knjigemikroservis.service.KnjigaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
@@ -11,8 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.validation.Valid;
-import java.sql.Array;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,7 +61,8 @@ public class KnjigaController {
         return   knjigaService.knjigePoKategoriji(naziv);
     }
 
-    @RequestMapping("/knjige/ocjene/{id}")
+    //Treba biti na mikroservisu korisnici
+   /* @RequestMapping("/knjige/ocjene/{id}")
     public List<Ocjena> sveOcjeneKnjige (@PathVariable Integer id){
 
         Knjiga knjiga = restTemplate.getForObject("http://knjige-mikroservis/knjige/"+id,Knjiga.class);
@@ -74,12 +70,7 @@ public class KnjigaController {
 
         return knjigaService.sveOcjeneKnjige(knjiga);
 
-    }
-
-
-    /*@RequestMapping("/knjige/autori/{naziv}")
-    public List<Optional<Knjiga>> knjigePoAutoru (@PathVariable String naziv){
-        return   knjigaService.knjigePoAutoru(naziv);
     }*/
+
 
 }
