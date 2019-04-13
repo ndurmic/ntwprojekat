@@ -1,7 +1,10 @@
 package etf.nwt.knjigemikroservis.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class Kategorija {
@@ -11,11 +14,17 @@ public class Kategorija {
     private Integer id;
     @NotNull
     private String naziv;
-    @Column(name="knjiga_id")
-    private Integer knjiga_id;
+    @ManyToMany(mappedBy = "listaKategorija")
+    @JsonIgnore
+    private List<Knjiga> listaKnjiga;
 
     public Kategorija(String naziv) {
         this.naziv = naziv;
+    }
+
+    public Kategorija(String naziv,List<Knjiga> listaKnjiga) {
+        this.naziv = naziv;
+        this.listaKnjiga = listaKnjiga;
     }
 
     public Kategorija() {
@@ -38,11 +47,12 @@ public class Kategorija {
         this.naziv = naziv;
     }
 
-    public Integer getKnjiga_id() {
-        return knjiga_id;
+    public List<Knjiga> getListaKnjiga() {
+        return listaKnjiga;
     }
 
-    public void setKnjiga_id(Integer knjiga_id) {
-        this.knjiga_id = knjiga_id;
+    public void setListaKnjiga(List<Knjiga> listaKnjiga) {
+        this.listaKnjiga = listaKnjiga;
     }
+
 }

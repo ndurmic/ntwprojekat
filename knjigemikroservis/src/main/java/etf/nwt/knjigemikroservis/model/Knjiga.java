@@ -21,8 +21,9 @@ public class Knjiga {
     private String opis;
     private String datumIzdavanja;
 
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="knjiga_id", referencedColumnName ="id")
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(name = "KategorijeKnjige", joinColumns = @JoinColumn(name = "knjiga_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "kategorija_id", referencedColumnName = "id"))
     private List<Kategorija> listaKategorija;
 
     @ManyToMany(cascade = CascadeType.ALL)
