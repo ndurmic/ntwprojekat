@@ -32,7 +32,7 @@ public class Korisnik {
     private byte[] slika;
 
     public Korisnik(String email, String username, String password, String ime, String prezime, String rola,
-                         byte[] i) {
+                    byte[] i) {
         super();
         this.email = email;
         this.username = username;

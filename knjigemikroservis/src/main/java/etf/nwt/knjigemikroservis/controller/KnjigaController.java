@@ -1,13 +1,19 @@
 package etf.nwt.knjigemikroservis.controller;
 
+import etf.nwt.knjigemikroservis.model.KategorijeKnjige;
 import etf.nwt.knjigemikroservis.model.Knjiga;
+import etf.nwt.knjigemikroservis.model.Ocjena;
 import etf.nwt.knjigemikroservis.service.KnjigaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,21 +62,52 @@ public class KnjigaController {
         knjigaService.obrisiKnjigu(id);
     }
 
-    @RequestMapping("/knjige/kategorije/{naziv}")
-    public List<Optional<Knjiga>> knjigePoKategoriji (@PathVariable String naziv){
-        return   knjigaService.knjigePoKategoriji(naziv);
+    //Lista svih knjiga iz odredjene kategorije
+    @RequestMapping("/knjige/kategorije/{idKategorije}")
+    public  List<Optional<Knjiga>> knjigePoKategoriji (@PathVariable Integer idKategorije){
+        return   knjigaService.knjigePoKategoriji(idKategorije);
     }
 
-    //Treba biti na mikroservisu korisnici
-   /* @RequestMapping("/knjige/ocjene/{id}")
+    //Lista svih ocjena
+    @RequestMapping("/knjige/ocjene")
+    public List<Ocjena> sveOcjene (){
+
+        ResponseEntity<List<Ocjena>> response = restTemplate.exchange(
+                "http://korisnici-mikroservis/ocjene",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Ocjena>>(){});
+        List<Ocjena> ocjene = response.getBody();
+
+        return ocjene;
+
+    }
+
+    //Sve ocjene jedne knjige
+   @RequestMapping("/knjige/{id}/ocjene")
     public List<Ocjena> sveOcjeneKnjige (@PathVariable Integer id){
 
-        Knjiga knjiga = restTemplate.getForObject("http://knjige-mikroservis/knjige/"+id,Knjiga.class);
-        //Slicno ovo moze sveKnjigeAutora ili sviKomentari korisnika
+       //LISTA OBJEKATA KORISTECI REST TEMPLATE
+       ResponseEntity<List<Ocjena>> response = restTemplate.exchange(
+               "http://korisnici-mikroservis/ocjene",
+               HttpMethod.GET,
+               null,
+               new ParameterizedTypeReference<List<Ocjena>>(){});
+       List<Ocjena> ocjene = response.getBody();
+       List<Ocjena> ocjeneKnjige = new ArrayList<>();
 
-        return knjigaService.sveOcjeneKnjige(knjiga);
+       for(int i=0;i<ocjene.size();i++)
+       {
+           if(ocjene.get(i).getKnjiga().getId() == id){
+               ocjeneKnjige.add(ocjene.get(i));
+           }
+       }
 
-    }*/
+        return ocjeneKnjige;
+
+    }
+
+
 
 
 }

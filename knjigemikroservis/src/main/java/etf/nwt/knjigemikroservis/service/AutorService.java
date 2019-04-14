@@ -1,13 +1,17 @@
 package etf.nwt.knjigemikroservis.service;
 
 import etf.nwt.knjigemikroservis.model.Autor;
-import etf.nwt.knjigemikroservis.model.Knjiga;
 import etf.nwt.knjigemikroservis.repository.AutorRepository;
-import etf.nwt.knjigemikroservis.repository.KnjigaRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +20,31 @@ public class AutorService {
 
     @Autowired
     private AutorRepository autorRepository;
+
+    //RABBIT MQ --START--
+    private Logger logger = LoggerFactory.getLogger(AutorService.class);
+
+    private int messageNumber = 0;
+
+    private static List<String> ROUTING_KEYS = Arrays.asList(
+            "autor.created",
+            "autor.edited",
+            "autor.deleted");
+
+    private final RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    public AutorService(RabbitTemplate rabbitTemplate) {
+        this.rabbitTemplate = rabbitTemplate;
+    }
+
+    @Scheduled(fixedDelay = 1000, initialDelay = 500)
+    public void sendMessage(String routingKey) {
+        String message = String.format("Event no. %d of type '%s'", ++messageNumber, routingKey);
+        rabbitTemplate.convertAndSend("Autor exchange", routingKey, message);
+        logger.info("Published message '{}'", message);
+    }
+    //RABBIT MQ --END--
 
     public List<Autor> listaSvihAutora(){
         List<Autor> autori = new ArrayList<>();
@@ -29,7 +58,9 @@ public class AutorService {
     }
 
     public void dodajAutora (Autor autor){
+
         autorRepository.save(autor);
+        sendMessage(ROUTING_KEYS.get(0));
     }
 
     public void azurirajAutora (Autor autor, Integer id){
@@ -37,10 +68,13 @@ public class AutorService {
         //Zbog toga nema potrebe za metodom update, save radi oboje
         autor.setId(id);
         autorRepository.save(autor);
+        sendMessage(ROUTING_KEYS.get(1));
     }
 
     public void obrisiAutora(Integer id){
+
         autorRepository.deleteById(id);
+        sendMessage(ROUTING_KEYS.get(2));
     }
 
 

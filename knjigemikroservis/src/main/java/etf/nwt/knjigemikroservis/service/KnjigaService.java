@@ -5,11 +5,17 @@ package etf.nwt.knjigemikroservis.service;
 import etf.nwt.knjigemikroservis.model.*;
 import etf.nwt.knjigemikroservis.repository.AutorRepository;
 import etf.nwt.knjigemikroservis.repository.KategorijaRepository;
+import etf.nwt.knjigemikroservis.repository.KategorijeKnjigeRepository;
 import etf.nwt.knjigemikroservis.repository.KnjigaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
+import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.*;
 
 @Service
@@ -21,6 +27,33 @@ public class KnjigaService {
         private KategorijaRepository kategorijaRepository;
         @Autowired
         private AutorRepository autorRepository;
+        @Autowired
+        private KategorijeKnjigeRepository kategorijeKnjigeRepository;
+
+        //RABBIT MQ --START--
+        private Logger logger = LoggerFactory.getLogger(KnjigaService.class);
+
+        private int messageNumber = 0;
+
+        private static List<String> ROUTING_KEYS = Arrays.asList(
+            "knjiga.created",
+            "knjiga.edited",
+            "knjiga.deleted");
+
+        private final RabbitTemplate rabbitTemplate;
+
+        @Autowired
+        public KnjigaService(RabbitTemplate rabbitTemplate) {
+            this.rabbitTemplate = rabbitTemplate;
+        }
+
+        @Scheduled(fixedDelay = 1000, initialDelay = 500)
+        public void sendMessage(String routingKey) {
+            String message = String.format("Event no. %d of type '%s'", ++messageNumber, routingKey);
+            rabbitTemplate.convertAndSend("Knjiga exchange", routingKey, message);
+            logger.info("Published message '{}'", message);
+        }
+        //RABBIT MQ --END--
 
         public List<Knjiga> listaSvihKnjiga(){
             List<Knjiga> knjige = new ArrayList<>();
@@ -34,7 +67,9 @@ public class KnjigaService {
         }
 
         public void dodajKnjigu (Knjiga knjiga){
+
             knjigaRepository.save(knjiga);
+            sendMessage(ROUTING_KEYS.get(0));
         }
 
         public void azurirajKnjigu (Knjiga knjiga, Integer id){
@@ -42,22 +77,26 @@ public class KnjigaService {
             //Zbog toga nema potrebe za metodom update, save radi oboje
             knjiga.setId(id);
             knjigaRepository.save(knjiga);
+            sendMessage(ROUTING_KEYS.get(1));
         }
 
         public void obrisiKnjigu(Integer id){
+
             knjigaRepository.deleteById(id);
+            sendMessage(ROUTING_KEYS.get(2));
         }
 
-        public List<Optional<Knjiga>> knjigePoKategoriji(String naziv){
-            List<Optional<Knjiga>> knjige = new ArrayList<>();
-            List<Kategorija> listaKategorija = new ArrayList<>();
-            kategorijaRepository.findByNaziv(naziv).forEach(listaKategorija::add);
+        public List<Optional<Knjiga>> knjigePoKategoriji(Integer idKategorije){
+           Iterable<KategorijeKnjige> listaKategorija = kategorijeKnjigeRepository.findAll();
+           List<Optional<Knjiga>> listaKnjiga = new ArrayList<>();
 
-            for(int i=0;i<listaKategorija.size();i++)
-            {
-               // knjige.add(knjigaRepository.findById(listaKategorija.get(i)));
+            for (KategorijeKnjige kategorijeKnjige : listaKategorija) {
+                if(kategorijeKnjige.getKategorija_id()==idKategorije)
+                listaKnjiga.add(knjigaRepository.findById(kategorijeKnjige.getKnjiga_id()));
             }
-            return  knjige;
+
+           return  listaKnjiga;
+
         }
 
 
