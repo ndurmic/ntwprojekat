@@ -24,7 +24,7 @@ public class Knjiga {
     private Date datumIzdavanja;
 
     private int id_kategorije;
-    private int id_autorKnjige;
+    private int idAutorKnjige;
 
     public int getId_kategorije() {
         return id_kategorije;
@@ -53,12 +53,12 @@ public class Knjiga {
         this.datumIzdavanja = datumIzdavanja;
     }
 
-    public int getId_autorKnjige() {
-        return id_autorKnjige;
+    public int getIdAutorKnjige() {
+        return idAutorKnjige;
     }
 
-    public void setId_autorKnjige(int id_autorKnjige) {
-        this.id_autorKnjige = id_autorKnjige;
+    public void setIdAutorKnjige(int id_autorKnjige) {
+        this.idAutorKnjige = id_autorKnjige;
     }
 
     public String getNaslov(){return naslov;}
@@ -72,7 +72,7 @@ public class Knjiga {
         this.naslov=nasov;
         this.opis=opis;
         this.datumIzdavanja=datumIzdavanja;
-        this.id_autorKnjige=idAutora;
+        this.idAutorKnjige=idAutora;
         this.id_kategorije=idKatergorije;
     }
 }

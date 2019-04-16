@@ -3,6 +3,7 @@ package com.example.kolekcijeservis.Models;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Entity
 @Table(name = "korisnici")
@@ -21,6 +22,8 @@ public class Korisnik {
     private String prezime;
     private byte[] slika;
     private String rola;
+
+
 
     public int getId() {
         return id;

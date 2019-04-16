@@ -26,11 +26,12 @@ public class Kolekcija {
     private int kolekcijaVidljiva;
     private String Kolekcijecol;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idKorisnika", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne
+    @JoinColumn(name="idKorisnika", nullable = true)
     @JsonIgnore
     private Korisnik korisnik;
+
+
 
     public int getId() {
         return id;
@@ -85,7 +86,7 @@ public class Kolekcija {
     }
 
     public void setKorisnik(Korisnik korisnik) {
-        this.korisnik = korisnik;
+        this.korisnik=korisnik;
     }
 
     public Kolekcija(){}
@@ -97,6 +98,6 @@ public class Kolekcija {
         this.datumKreiranja = datumKreiranja;
         this.kolekcijaVidljiva = kolekcijaVidljiva;
         Kolekcijecol = kolekcijecol;
-        this.korisnik = korisnik;
+        this.korisnik=korisnik;
     }
 }

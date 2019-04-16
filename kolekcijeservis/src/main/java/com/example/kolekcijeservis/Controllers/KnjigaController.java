@@ -63,7 +63,7 @@ public class KnjigaController {
             knjiga.setDatumIzdavanja(knjigaRequest.getDatumIzdavanja());
             knjiga.setNaslov(knjigaRequest.getNaslov());
             knjiga.setOpis(knjigaRequest.getOpis());
-            knjiga.setId_autorKnjige(knjigaRequest.getId_autorKnjige());
+            knjiga.setIdAutorKnjige(knjigaRequest.getIdAutorKnjige());
             knjiga.setId_kategorije(knjigaRequest.getId_kategorije());
 
             return knjigaRepository.save(knjiga);
@@ -96,4 +96,6 @@ public class KnjigaController {
         }
         return  knjige;
     }
+
+
 }

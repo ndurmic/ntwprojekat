@@ -79,4 +79,6 @@ public class KorisnikController {
             return ResponseEntity.ok().build();
         }); //.orElseThrow(() -> new ResourceNotFoundException("PostId " + postId + " not found"));
     }
+
+
 }

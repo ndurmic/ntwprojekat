@@ -50,6 +50,9 @@ public class KnjigaKolekcija   {
         this.knjiga = knjiga;
     }
 
+    public KnjigaKolekcija() {
+    }
+
     public KnjigaKolekcija(int id, Kolekcija kolekcija, Knjiga knjiga) {
         this.id = id;
         this.kolekcija = kolekcija;

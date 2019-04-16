@@ -1,8 +1,11 @@
 package com.example.kolekcijeservis.Controllers;
 
+import com.example.kolekcijeservis.Models.Knjiga;
 import com.example.kolekcijeservis.Models.Kolekcija;
 import com.example.kolekcijeservis.Models.Kolekcija;
 import com.example.kolekcijeservis.Models.Korisnik;
+import com.example.kolekcijeservis.Repository.KnjigaKolekcijaRepository;
+import com.example.kolekcijeservis.Repository.KnjigaRepository;
 import com.example.kolekcijeservis.Repository.KolekcijaRepository;
 import com.example.kolekcijeservis.Repository.KorisnikRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,12 @@ public class KolekcijaController {
     @Autowired
     KorisnikRepository korisnikRepository;
 
+    @Autowired
+    KnjigaRepository knjigaRepository;
+
+    @Autowired
+    KnjigaKolekcijaRepository knjigaKolekcijaRepository;
+
     /**
      * Saves Kolekcija in database
      * @param kolekcija
@@ -30,12 +39,13 @@ public class KolekcijaController {
      */
     @PostMapping("/kolekcije/{korisnikId}")
     public Optional<Kolekcija> createKoekcija(@PathVariable (value = "korisnikId") int korisnikId, @Valid @RequestBody Kolekcija kolekcija) {
-        //return kolekcijaRepository.save(kolekcija);
 
-        return korisnikRepository.findById(korisnikId).map(korisnik -> {
-            kolekcija.setKorisnik(korisnik);
-            return kolekcijaRepository.save(kolekcija);
-        });//.orElseThrow(() -> new ResourceNotFoundException("PostId " + postId + " not found"))
+
+            return korisnikRepository.findById(korisnikId).map(korisnik -> {
+                kolekcija.setKorisnik(korisnik);
+                return kolekcijaRepository.save(kolekcija);
+            });
+
     }
 
     /**
@@ -90,20 +100,18 @@ public class KolekcijaController {
         }); //.orElseThrow(() -> new ResourceNotFoundException("PostId " + postId + " not found"));
     }
 
-
-    /*
-    @PostMapping("/kolekcijePoKorisniku")
-    public List<Optional<Kolekcija>> kolekcijePoKorsniku(String ime){
-        List<Korisnik> korisnici = new ArrayList<>();
-        List<Kolekcija> listaKolekcija = new ArrayList<>();
-        korisnikRepository.findByIme(ime).forEach(korisnici::add);
-
-        for(int i=0;i<korisnici.size();i++)
-        {
-            listaKolekcija.add(kolekcijaRepository.findById(korisnici.get(i).getId()));
+    @GetMapping("kolekcije/autor/{id}")
+    public Integer brojKolekcijaPoAutoru(@PathVariable(value = "id") int idAutora){
+        int popularity=0;
+        List<Knjiga> knjige=knjigaRepository.findByidAutorKnjige(idAutora);
+        for(int i=0; i<knjige.size(); i++){
+            popularity+=knjigaKolekcijaRepository.findByKnjiga_Id(knjige.get(i).getId()).size();
         }
-        return  listaKolekcija;
+        return popularity;
     }
 
-    */
+    @GetMapping("kolekcije/knjiga/{id}")
+    public Integer brojKolekcijaPoKnjizi(@PathVariable(value = "id") int idKnjige){
+        return knjigaKolekcijaRepository.findByKnjiga_Id(idKnjige).size();
+    }
 }
