@@ -32,35 +32,37 @@ public class AutorController {
     }
 
     @RequestMapping(method= RequestMethod.POST, value="/autori")
-    public void dodajAutora(@RequestBody @Valid Autor autor, Errors errors) {
+    public Autor dodajAutora(@RequestBody @Valid Autor autor, Errors errors) {
 
         if(errors.hasErrors()){
             System.out.println(errors.getAllErrors());
         }
-        else{
-            autorService.dodajAutora(autor);
-            autorSender.dodajAutora(autor);
-        }
+
+        autorSender.dodajAutora(autor);
+        return autorService.dodajAutora(autor);
 
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/autori/{id}")
-    public void azurirajAutora(@RequestBody @Valid Autor autor, @PathVariable Integer id, Errors errors) {
+    public Autor azurirajAutora(@RequestBody @Valid Autor autor, @PathVariable Integer id, Errors errors) {
 
         if(errors.hasErrors()){
             System.out.println(errors.getAllErrors());
         }
-        else{
-            autorService.azurirajAutora(autor, id);
-            autorSender.azurirajAutora(autor, id);
-        }
+
+        autorSender.azurirajAutora(autor, id);
+
+        return autorService.azurirajAutora(autor, id);
+
 
     }
 
     @RequestMapping(method=RequestMethod.DELETE, value="/autori/{id}")
-    public void obrisiAutora (@PathVariable Integer id){
-        autorService.obrisiAutora(id);
+    public String obrisiAutora (@PathVariable Integer id){
+
         autorSender.obrisiAutora(id);
+
+        return autorService.obrisiAutora(id);
     }
 
 

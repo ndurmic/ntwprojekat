@@ -41,32 +41,34 @@ public class KnjigaController {
     }
 
     @RequestMapping(method= RequestMethod.POST, value="/knjige")
-    public void dodajKnjigu(@RequestBody @Valid Knjiga knjiga, Errors errors) {
+    public Knjiga dodajKnjigu(@RequestBody @Valid Knjiga knjiga, Errors errors) {
         if(errors.hasErrors()){
             System.out.println(errors.getAllErrors());
         }
-        else{
-            knjigaService.dodajKnjigu(knjiga);
-            knjigaSender.dodajKnjigu(knjiga);
-            
-        }
+
+        knjigaSender.dodajKnjigu(knjiga);
+
+        return knjigaService.dodajKnjigu(knjiga);
+
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/knjige/{id}")
-    public void azurirajKnjigu(@RequestBody @Valid Knjiga knjiga, @PathVariable Integer id, Errors errors) {
+    public Knjiga azurirajKnjigu(@RequestBody @Valid Knjiga knjiga, @PathVariable Integer id, Errors errors) {
         if(errors.hasErrors()){
             System.out.println(errors.getAllErrors());
         }
-        else{
-            knjigaService.azurirajKnjigu(knjiga, id);
-            knjigaSender.azurirajKnjigu(knjiga, id);
-        }
+
+        knjigaSender.azurirajKnjigu(knjiga, id);
+
+        return knjigaService.azurirajKnjigu(knjiga, id);
     }
 
     @RequestMapping(method=RequestMethod.DELETE, value="/knjige/{id}")
-    public void obrisiKnjigu (@PathVariable Integer id){
-        knjigaService.obrisiKnjigu(id);
+    public String obrisiKnjigu (@PathVariable Integer id){
+
         knjigaSender.obrisiKnjigu(id);
+
+        return knjigaService.obrisiKnjigu(id);
     }
 
     //Lista svih knjiga iz odredjene kategorije
@@ -114,6 +116,15 @@ public class KnjigaController {
 
     }
 
+    //Vraca broj pojavljivanja knjige u kolekcijama
+    @RequestMapping("/knjige/{id}/popularnost")
+    public Integer brojPojavljivanja (@PathVariable Integer id){
+
+        Integer response = restTemplate.getForObject("http://kolekcije-mikroservis/kolekcije/knjiga/"+id,Integer.class);
+
+        return response;
+
+    }
 
 
 

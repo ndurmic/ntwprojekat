@@ -17,7 +17,7 @@ public class AutorSender {
 	private final RabbitTemplate rabbitTemplate;
     private final ObjectMapper objectMapper;
     
-    private Logger logger = LoggerFactory.getLogger(KnjigaSender.class);
+    private Logger logger = LoggerFactory.getLogger(AutorSender.class);
 
     @Autowired
     public AutorSender(RabbitTemplate rabbitTemplate, ObjectMapper objectMapper) {

@@ -16,7 +16,7 @@ public class KategorijaSender {
 	private final RabbitTemplate rabbitTemplate;
     private final ObjectMapper objectMapper;
     
-    private Logger logger = LoggerFactory.getLogger(KnjigaSender.class);
+    private Logger logger = LoggerFactory.getLogger(KategorijaSender.class);
 
     @Autowired
     public KategorijaSender(RabbitTemplate rabbitTemplate, ObjectMapper objectMapper) {

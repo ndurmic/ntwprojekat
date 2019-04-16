@@ -31,6 +31,12 @@ public class Knjiga {
             inverseJoinColumns = @JoinColumn(name = "autor_id", referencedColumnName = "id"))
     private List<Autor> listaAutora;
 
+    public Knjiga(String naslov, String opis, String datumIzdavanja) {
+        this.naslov = naslov;
+        this.opis = opis;
+        this.datumIzdavanja = datumIzdavanja;
+    }
+
     public Knjiga(String naslov, String opis, String datumIzdavanja, List<Kategorija> listaKategorija) {
         this.naslov = naslov;
         this.opis = opis;

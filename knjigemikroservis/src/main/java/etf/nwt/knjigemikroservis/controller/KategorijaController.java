@@ -31,35 +31,37 @@ public class KategorijaController {
     }
 
     @RequestMapping(method= RequestMethod.POST, value="/kategorije")
-    public void dodajKategoriju(@RequestBody @Valid Kategorija kategorija, Errors errors) {
+    public Kategorija dodajKategoriju(@RequestBody @Valid Kategorija kategorija, Errors errors) {
 
         if(errors.hasErrors()){
             System.out.println(errors.getAllErrors());
         }
-        else{
-            kategorijaService.dodajKategoriju(kategorija);
-            kategorijaSender.dodajKategoriju(kategorija);
-        }
+
+        kategorijaSender.dodajKategoriju(kategorija);
+
+        return kategorijaService.dodajKategoriju(kategorija);
 
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/kategorije/{id}")
-    public void azurirajKategoriju(@RequestBody @Valid Kategorija kategorija, @PathVariable Integer id, Errors errors) {
+    public Kategorija azurirajKategoriju(@RequestBody @Valid Kategorija kategorija, @PathVariable Integer id, Errors errors) {
 
         if(errors.hasErrors()){
             System.out.println(errors.getAllErrors());
         }
-        else{
-            kategorijaService.azurirajKategoriju(kategorija, id);
-            kategorijaSender.azurirajKategoriju(kategorija, id);
-        }
+
+        kategorijaSender.azurirajKategoriju(kategorija, id);
+
+        return kategorijaService.azurirajKategoriju(kategorija, id);
 
     }
 
     @RequestMapping(method=RequestMethod.DELETE, value="/kategorije/{id}")
-    public void obrisiKategoriju (@PathVariable Integer id){
-        kategorijaService.obrisiKategoriju(id);
+    public String obrisiKategoriju (@PathVariable Integer id){
+
         kategorijaSender.obrisiKategoriju(id);
+
+        return  kategorijaService.obrisiKategoriju(id);
     }
 
 
