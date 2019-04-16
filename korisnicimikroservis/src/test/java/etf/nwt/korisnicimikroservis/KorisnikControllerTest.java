@@ -15,6 +15,10 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import etf.nwt.korisnicimikroservis.Controllers.KorisnikController;
 import etf.nwt.korisnicimikroservis.Models.KorisnikModel;
@@ -57,9 +61,51 @@ public class KorisnikControllerTest {
     private OcjenaService ocjenaService;
     @MockBean
     private KnjigaService knjigaService;
+    
+    private KorisnikModel korisnik;
+    
+    private String povratakIzKorisnika;
 	
     @Test
     public void contextLoads() {
+    }
+    
+    
+    
+    @Test
+    public void dodajKorisnika() throws Exception {
+ 
+    	String str = "Example String";
+    	byte[] b = str.getBytes();
+    	korisnik = new KorisnikModel("email1@email.com", "usernamee", "sifra1%Sifraa", "Imee", "Prezimee", "rolaa",b);
+    	
+        when( korisnikService.addKorisnik(korisnik)).thenReturn(povratakIzKorisnika);
+        /*String body1 = "{\r\n" + 
+        		"        \"email\": \"email1@email.com\",\r\n" + 
+        		"        \"username\": \"usernamee\",\r\n" + 
+        		"        \"password\": \"sifra1%Sifraa\",\r\n" + 
+        		"        \"ime\": \"Imee\",\r\n" + 
+        		"        \"prezime\": \"Prezimee\",\r\n" + 
+        		"        \"rola\": \"rolaa\"\r\n" + 
+        		"    }";
+        
+        */String body = "{\"email\":\"email1@email.com\",\"username\":\"usernamee\",\"password\":\"sifra1%Sifraa\",\"ime\":\"Imee\",\"prezime\":\"Prezimee\",\"rola\":\"rolaa\"}";
+        //RequestBody body = RequestBody.create(JSON,body1);
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .post("/dodajkorisnika")
+                .characterEncoding("utf-8")
+                .content(body)
+                .contentType(MediaType.APPLICATION_JSON);
+ 
+        MvcResult result = mockMvc.perform(requestBuilder).andDo(print()).andReturn();
+ 
+        //MockHttpServletResponse response = result.getResponse();
+  
+        String expected = "Korisnik uspješno dodan";
+ 
+        assertEquals(expected, result.getResponse().getContentAsString());
+ 
+ 
     }
     
     @Test
