@@ -22,19 +22,19 @@ public class AutoriMessageListener {
 	
 	@RabbitListener(queues = "rabbitmqkm.dodajautora")
 	public void dodajAutora(Autor autor) {
-		logger.info("Poruka: ", "Primljen novokreirani autor");
+		logger.info("Poruka: '{}'", "Primljen novokreirani autor");
 		autoriService.dodajAutora(autor);
 	}
 	
 	@RabbitListener(queues = "rabbitmqkm.azurirajautora")
-	public void azurirajAutora(Autor autor, Integer id) {
-		logger.info("Poruka: ", "Primljen azurirani autor");
-		autoriService.azurirajAutora(autor, id);
+	public void azurirajAutora(Autor autor) {
+		logger.info("Poruka: '{}'", "Primljen azurirani autor");
+		autoriService.azurirajAutora1(autor);
 	}
 	
 	@RabbitListener(queues = "rabbitmqkm.obrisiautora")
 	public void obrisiAutora(Integer id) {
-		logger.info("Poruka: ", "Primljen obrisani autor");
+		logger.info("Poruka: '{}'", "Primljen obrisani autor");
 		autoriService.obrisiAutora(id);;
 	}
 }

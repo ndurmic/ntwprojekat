@@ -24,9 +24,9 @@ public class KategorijeMessageListener {
 	}
 	
 	@RabbitListener(queues = "rabbitmqkm.azurirajkategoriju")
-	public void azurirajKategoriju(Kategorija kategorija, Integer id) {
+	public void azurirajKategoriju(Kategorija kategorija) {
 		logger.info("Poruka: '{}'", "Primljena azurirana kategorija");
-		kategorijeService.azurirajKategoriju(kategorija, id);
+		kategorijeService.azurirajKategoriju1(kategorija);
 	}
 	
 	@RabbitListener(queues = "rabbitmqkm.obrisikategoriju")

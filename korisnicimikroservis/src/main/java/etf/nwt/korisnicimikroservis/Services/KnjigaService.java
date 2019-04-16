@@ -41,6 +41,13 @@ public class KnjigaService {
         knjigaRepositori.save(knjiga);
         return "Knjiga uspješno ažurirana";
     }
+	
+	public String azurirajKnjigu1 (Knjiga knjiga){
+        //JPA prepozna ako nema objekta onda ce ga dodati, ako ima azurirat ce ga u zavisnosti od ID koji se nalazi u entitetu
+        //Zbog toga nema potrebe za metodom update, save radi oboje
+        knjigaRepositori.save(knjiga);
+        return "Knjiga uspješno ažurirana";
+    }
 
     public String obrisiKnjigu(Integer id){
         knjigaRepositori.deleteById(id);

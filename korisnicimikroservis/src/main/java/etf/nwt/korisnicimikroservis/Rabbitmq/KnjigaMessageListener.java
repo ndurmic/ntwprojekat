@@ -20,19 +20,19 @@ public class KnjigaMessageListener {
 	
 	@RabbitListener(queues = "rabbitmqkm.dodajknjigu")
 	public void dodajKnjigu(Knjiga knjiga) {
-		logger.info("Poruka: ","Primljena novokreirana knjiga");
+		logger.info("Poruka: '{}'","Primljena novokreirana knjiga");
 		knjigaService.addKnjiga(knjiga);
 	}
 	
 	@RabbitListener(queues = "rabbitmqkm.azurirajknjigu")
-	public void azurirajKnjiug(Knjiga knjiga, Integer id) {
-		logger.info("Poruka: ","Primljena azurirana knjiga");
-		knjigaService.azurirajKnjigu(knjiga,id);
+	public void azurirajKnjigu(Knjiga knjiga) {
+		logger.info("Poruka: '{}'","Primljena azurirana knjiga");
+		knjigaService.azurirajKnjigu1(knjiga);
 	}
 	
 	@RabbitListener(queues = "rabbitmqkm.obrisiknjigu")
 	public void obrisiKnjigu(Integer id) {
-		logger.info("Poruka: ","Primljena obrisana knjiga");
+		logger.info("Poruka: '{}'","Primljena obrisana knjiga");
 		knjigaService.obrisiKnjigu(id);
 	}
 
