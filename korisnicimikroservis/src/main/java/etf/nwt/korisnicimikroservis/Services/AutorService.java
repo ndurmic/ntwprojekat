@@ -1,7 +1,7 @@
 package etf.nwt.korisnicimikroservis.Services;
 
 import etf.nwt.korisnicimikroservis.Models.Autor;
-import etf.nwt.korisnicimikroservis.Models.KnjigaModel;
+import etf.nwt.korisnicimikroservis.Models.Knjiga;
 import etf.nwt.korisnicimikroservis.Repositories.AutorRepository;
 import etf.nwt.korisnicimikroservis.Repositories.KnjigaRepository;
 import org.springframework.beans.factory.annotation.Autowired;

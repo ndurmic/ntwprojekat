@@ -1,6 +1,7 @@
 package etf.nwt.knjigemikroservis.controller;
 
 
+import etf.nwt.knjigemikroservis.amqpProducer.AutorSender;
 import etf.nwt.knjigemikroservis.model.Autor;
 import etf.nwt.knjigemikroservis.service.AutorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class AutorController {
 
     @Autowired
     private AutorService autorService;
+    
+    @Autowired
+    private AutorSender autorSender;
 
     @RequestMapping("/autori")
     public List<Autor> listaSvihAutora (){
@@ -35,6 +39,7 @@ public class AutorController {
         }
         else{
             autorService.dodajAutora(autor);
+            autorSender.dodajAutora(autor);
         }
 
     }
@@ -47,6 +52,7 @@ public class AutorController {
         }
         else{
             autorService.azurirajAutora(autor, id);
+            autorSender.azurirajAutora(autor, id);
         }
 
     }
@@ -54,6 +60,7 @@ public class AutorController {
     @RequestMapping(method=RequestMethod.DELETE, value="/autori/{id}")
     public void obrisiAutora (@PathVariable Integer id){
         autorService.obrisiAutora(id);
+        autorSender.obrisiAutora(id);
     }
 
 

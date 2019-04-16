@@ -21,7 +21,7 @@ public class KategorijaService {
 
     @Autowired
     private KategorijaRepository kategorijaRepository;
-
+    /*
     //RABBIT MQ --START--
     private Logger logger = LoggerFactory.getLogger(AutorService.class);
 
@@ -46,7 +46,7 @@ public class KategorijaService {
         logger.info("Published message '{}'", message);
     }
     //RABBIT MQ --END--
-
+	*/
     public List<Kategorija> listaSvihKategorija(){
         List<Kategorija> kategorije = new ArrayList<>();
         kategorijaRepository.findAll().forEach(kategorije::add);
@@ -61,7 +61,7 @@ public class KategorijaService {
     public void dodajKategoriju (Kategorija kategorija){
 
         kategorijaRepository.save(kategorija);
-        sendMessage(ROUTING_KEYS.get(0));
+        //sendMessage(ROUTING_KEYS.get(0));
     }
 
     public void azurirajKategoriju (Kategorija kategorija, Integer id){
@@ -69,13 +69,13 @@ public class KategorijaService {
         //Zbog toga nema potrebe za metodom update, save radi oboje
         kategorija.setId(id);
         kategorijaRepository.save(kategorija);
-        sendMessage(ROUTING_KEYS.get(1));
+        //sendMessage(ROUTING_KEYS.get(1));
     }
 
     public void obrisiKategoriju(Integer id){
 
         kategorijaRepository.deleteById(id);
-        sendMessage(ROUTING_KEYS.get(2));
+        //sendMessage(ROUTING_KEYS.get(2));
     }
 
 }

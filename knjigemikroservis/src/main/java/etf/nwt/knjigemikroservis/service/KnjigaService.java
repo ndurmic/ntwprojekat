@@ -29,7 +29,7 @@ public class KnjigaService {
         private AutorRepository autorRepository;
         @Autowired
         private KategorijeKnjigeRepository kategorijeKnjigeRepository;
-
+        /*
         //RABBIT MQ --START--
         private Logger logger = LoggerFactory.getLogger(KnjigaService.class);
 
@@ -54,7 +54,7 @@ public class KnjigaService {
             logger.info("Published message '{}'", message);
         }
         //RABBIT MQ --END--
-
+		*/
         public List<Knjiga> listaSvihKnjiga(){
             List<Knjiga> knjige = new ArrayList<>();
             knjigaRepository.findAll().forEach(knjige::add);
@@ -69,7 +69,7 @@ public class KnjigaService {
         public void dodajKnjigu (Knjiga knjiga){
 
             knjigaRepository.save(knjiga);
-            sendMessage(ROUTING_KEYS.get(0));
+            //sendMessage(ROUTING_KEYS.get(0));
         }
 
         public void azurirajKnjigu (Knjiga knjiga, Integer id){
@@ -77,13 +77,13 @@ public class KnjigaService {
             //Zbog toga nema potrebe za metodom update, save radi oboje
             knjiga.setId(id);
             knjigaRepository.save(knjiga);
-            sendMessage(ROUTING_KEYS.get(1));
+            //sendMessage(ROUTING_KEYS.get(1));
         }
 
         public void obrisiKnjigu(Integer id){
 
             knjigaRepository.deleteById(id);
-            sendMessage(ROUTING_KEYS.get(2));
+            //sendMessage(ROUTING_KEYS.get(2));
         }
 
         public List<Optional<Knjiga>> knjigePoKategoriji(Integer idKategorije){

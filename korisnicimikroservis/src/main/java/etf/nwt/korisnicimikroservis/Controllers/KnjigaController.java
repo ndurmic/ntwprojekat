@@ -32,22 +32,22 @@ public class KnjigaController {
     private RestTemplate restTemplate;
     
     @RequestMapping("/knjige")
-    public List<KnjigaModel> listaSvihKnjiga() {
-        return (List<KnjigaModel>) knjigaService.findAll();
+    public List<Knjiga> listaSvihKnjiga() {
+        return (List<Knjiga>) knjigaService.findAll();
     }
 
     @RequestMapping("/knjige/{id}")
-    public Optional<KnjigaModel> dajKnjigu(@PathVariable Integer id) {
+    public Optional<Knjiga> dajKnjigu(@PathVariable Integer id) {
         return knjigaService.findById(id);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/dodajknjigu")
-    public String dodajKnjigu(@RequestBody KnjigaModel knjiga) {
+    public String dodajKnjigu(@RequestBody Knjiga knjiga) {
         return knjigaService.addKnjiga(knjiga);
     }
     
     @RequestMapping(method = RequestMethod.PUT, value = "/azuzirajknjigu/{id}")
-    public String azurirajKnjigu(@RequestBody KnjigaModel knjiga, @PathVariable int id) {
+    public String azurirajKnjigu(@RequestBody Knjiga knjiga, @PathVariable int id) {
     	return knjigaService.azurirajKnjigu(knjiga,id);
     }
 
@@ -57,8 +57,8 @@ public class KnjigaController {
     }
     // self test
     @RequestMapping("/sveknjige/{id}")
-    public KnjigaModel sveKnjige(@PathVariable Integer id){
-    	KnjigaModel knjiga = restTemplate.getForObject("http://korisnici-mikroservis/knjige/"+id,KnjigaModel.class);
+    public Knjiga sveKnjige(@PathVariable Integer id){
+    	Knjiga knjiga = restTemplate.getForObject("http://korisnici-mikroservis/knjige/"+id,Knjiga.class);
     	return knjiga;
     }
     

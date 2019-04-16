@@ -1,5 +1,6 @@
 package etf.nwt.knjigemikroservis.controller;
 
+import etf.nwt.knjigemikroservis.amqpProducer.KnjigaSender;
 import etf.nwt.knjigemikroservis.model.KategorijeKnjige;
 import etf.nwt.knjigemikroservis.model.Knjiga;
 import etf.nwt.knjigemikroservis.model.Ocjena;
@@ -22,6 +23,8 @@ public class KnjigaController {
 
     @Autowired
     private KnjigaService knjigaService;
+    @Autowired
+    private KnjigaSender knjigaSender;
 
     //Injecting our been
     @Autowired
@@ -44,6 +47,8 @@ public class KnjigaController {
         }
         else{
             knjigaService.dodajKnjigu(knjiga);
+            knjigaSender.dodajKnjigu(knjiga);
+            
         }
     }
 
@@ -54,12 +59,14 @@ public class KnjigaController {
         }
         else{
             knjigaService.azurirajKnjigu(knjiga, id);
+            knjigaSender.azurirajKnjigu(knjiga, id);
         }
     }
 
     @RequestMapping(method=RequestMethod.DELETE, value="/knjige/{id}")
     public void obrisiKnjigu (@PathVariable Integer id){
         knjigaService.obrisiKnjigu(id);
+        knjigaSender.obrisiKnjigu(id);
     }
 
     //Lista svih knjiga iz odredjene kategorije

@@ -28,12 +28,12 @@ public class OcjenaModel {
 
 	@ManyToOne
 	@JoinColumn(name = "id_knjige", referencedColumnName = "id", nullable = true)
-	private KnjigaModel knjiga;
+	private Knjiga knjiga;
 	@ManyToOne
 	@JoinColumn(name = "id_korisnika", referencedColumnName = "id", nullable = true)
 	private KorisnikModel korisnik;
 
-	public OcjenaModel(Integer ocjena, String komentar, KnjigaModel knjiga, KorisnikModel korisnik) {
+	public OcjenaModel(Integer ocjena, String komentar, Knjiga knjiga, KorisnikModel korisnik) {
 		super();
 		this.ocjena = ocjena;
 		this.komentar = komentar;
@@ -70,11 +70,11 @@ public class OcjenaModel {
 		this.komentar = komentar;
 	}
 
-	public KnjigaModel getKnjiga() {
+	public Knjiga getKnjiga() {
 		return knjiga;
 	}
 
-	public void setKnjiga(KnjigaModel knjiga) {
+	public void setKnjiga(Knjiga knjiga) {
 		this.knjiga = knjiga;
 	}
 

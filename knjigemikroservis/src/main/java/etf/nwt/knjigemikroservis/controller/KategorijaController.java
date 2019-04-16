@@ -1,5 +1,6 @@
 package etf.nwt.knjigemikroservis.controller;
 
+import etf.nwt.knjigemikroservis.amqpProducer.KategorijaSender;
 import etf.nwt.knjigemikroservis.model.Kategorija;
 import etf.nwt.knjigemikroservis.service.KategorijaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class KategorijaController {
 
     @Autowired
     private KategorijaService kategorijaService;
+    
+    @Autowired
+    private KategorijaSender kategorijaSender;
 
     @RequestMapping("/kategorije")
     public List<Kategorija> listaSvihKategorija (){
@@ -34,6 +38,7 @@ public class KategorijaController {
         }
         else{
             kategorijaService.dodajKategoriju(kategorija);
+            kategorijaSender.dodajKategoriju(kategorija);
         }
 
     }
@@ -46,6 +51,7 @@ public class KategorijaController {
         }
         else{
             kategorijaService.azurirajKategoriju(kategorija, id);
+            kategorijaSender.azurirajKategoriju(kategorija, id);
         }
 
     }
@@ -53,6 +59,7 @@ public class KategorijaController {
     @RequestMapping(method=RequestMethod.DELETE, value="/kategorije/{id}")
     public void obrisiKategoriju (@PathVariable Integer id){
         kategorijaService.obrisiKategoriju(id);
+        kategorijaSender.obrisiKategoriju(id);
     }
 
 

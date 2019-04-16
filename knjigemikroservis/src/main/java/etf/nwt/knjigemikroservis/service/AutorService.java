@@ -20,7 +20,7 @@ public class AutorService {
 
     @Autowired
     private AutorRepository autorRepository;
-
+    /*
     //RABBIT MQ --START--
     private Logger logger = LoggerFactory.getLogger(AutorService.class);
 
@@ -45,7 +45,7 @@ public class AutorService {
         logger.info("Published message '{}'", message);
     }
     //RABBIT MQ --END--
-
+	*/
     public List<Autor> listaSvihAutora(){
         List<Autor> autori = new ArrayList<>();
         autorRepository.findAll().forEach(autori::add);
@@ -60,7 +60,7 @@ public class AutorService {
     public void dodajAutora (Autor autor){
 
         autorRepository.save(autor);
-        sendMessage(ROUTING_KEYS.get(0));
+        //sendMessage(ROUTING_KEYS.get(0));
     }
 
     public void azurirajAutora (Autor autor, Integer id){
@@ -68,13 +68,13 @@ public class AutorService {
         //Zbog toga nema potrebe za metodom update, save radi oboje
         autor.setId(id);
         autorRepository.save(autor);
-        sendMessage(ROUTING_KEYS.get(1));
+        //sendMessage(ROUTING_KEYS.get(1));
     }
 
     public void obrisiAutora(Integer id){
 
         autorRepository.deleteById(id);
-        sendMessage(ROUTING_KEYS.get(2));
+        //sendMessage(ROUTING_KEYS.get(2));
     }
 
 

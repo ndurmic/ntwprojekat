@@ -1,4 +1,4 @@
-package etf.nwt.korisnicimikroservis.Rabbitmq;
+package etf.nwt.knjigemikroservis.amqpProducer;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Primary;
 public class RabbitmqConfig {
 
 	
-	// listener
+	// sender
 	final static String queueDodajKnjigu = "rabbitmqkm.dodajknjigu";
 	final static String queueAzurirajKnjigu = "rabbitmqkm.azurirajknjigu";
 	final static String queueObrisiKnjigu = "rabbitmqkm.obrisiknjigu";
@@ -31,11 +31,6 @@ public class RabbitmqConfig {
 	final static String queueAzurirajKategoriju = "rabbitmqkm.azurirajkategoriju";
 	final static String queueObrisiKategoriju = "rabbitmqkm.obrisikategoriju";
 	
-	
-	// sender
-	final static String queueDodanKorisnik = "rabbitmqkm.dodankorisnik";
-	final static String queueAzuriranKorisnik = "rabbitmqkm.azurirankorisnik";
-	final static String queueObrisanKorisnik = "rabbitmqkm.obrisankorisnik";
 	
 	@Bean
 	@Primary
@@ -82,21 +77,6 @@ public class RabbitmqConfig {
     public Queue queueObrisiKategoriju() {
         return new Queue(RabbitmqConfig.queueObrisiKategoriju);
     }
-	
-	@Bean
-	public Queue queueDodanKorisnik() {
-		return new Queue(RabbitmqConfig.queueDodanKorisnik);
-	}
-	
-	@Bean
-	public Queue queueAzuriranKorisnik() {
-		return new Queue(RabbitmqConfig.queueAzuriranKorisnik);
-	}
-	
-	@Bean
-	public Queue queueObrisanKorisnik() {
-		return new Queue(RabbitmqConfig.queueObrisanKorisnik);
-	}
 	
 	@Bean
     TopicExchange exchangeRabbitmqkm1() {

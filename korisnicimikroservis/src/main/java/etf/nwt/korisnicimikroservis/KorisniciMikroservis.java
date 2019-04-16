@@ -11,7 +11,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
-import etf.nwt.korisnicimikroservis.Models.KnjigaModel;
+//import etf.nwt.korisnicimikroservis.Models.KnjigaModel;
 import etf.nwt.korisnicimikroservis.Models.KorisnikModel;
 import etf.nwt.korisnicimikroservis.Models.OcjenaModel;
 import etf.nwt.korisnicimikroservis.Services.KnjigaService;
