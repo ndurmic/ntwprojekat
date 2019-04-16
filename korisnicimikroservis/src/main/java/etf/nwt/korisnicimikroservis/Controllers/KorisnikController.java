@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import etf.nwt.korisnicimikroservis.Services.KorisnikService;
 import etf.nwt.korisnicimikroservis.Services.OcjenaService;
 import etf.nwt.korisnicimikroservis.Models.*;
+import etf.nwt.korisnicimikroservis.Rabbitmq.KorisnikMessageSender;
 
 @RestController
 public class KorisnikController {
@@ -26,6 +27,9 @@ public class KorisnikController {
     private KorisnikService korisnikService;
     @Autowired
     private OcjenaService ocjenaService;
+    
+    @Autowired
+    private KorisnikMessageSender kms;
 
     @RequestMapping(method = RequestMethod.GET, value = "/korisnici")
     public Iterable<KorisnikModel> listaSvihKorisnika() {
@@ -39,12 +43,14 @@ public class KorisnikController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/dodajkorisnika")
     public String dodajKorisnika(@RequestBody KorisnikModel korisnik) {
+    	kms.dodajKorisnika(korisnik);
         return korisnikService.addKorisnik(korisnik);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/azurirajkorisnika/{id}")
     public String azurirajKorisnika(@RequestBody KorisnikModel korisnik, @PathVariable int id) {
-        return korisnikService.azurirajKorisnika(korisnik, id);
+        kms.azurirajKorisnika(korisnik, id);
+    	return korisnikService.azurirajKorisnika(korisnik, id);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/obrisikorisnika/{id}")
@@ -54,6 +60,7 @@ public class KorisnikController {
     		if(x.getKorisnik().getId().equals(id))
     		ocjenaService.obrisiOcjenu(x.getId());
     	}
+    	kms.obrisiKorisnika(id);
         return korisnikService.obrisiKorisnika(id);
     }
 }
