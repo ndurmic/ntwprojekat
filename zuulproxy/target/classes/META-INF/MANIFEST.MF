@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Implementation-Title: korisnicimikroservis
+Implementation-Title: zuulproxy
 Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: Muhamed Kapo
 Implementation-Vendor-Id: etf.nwt
