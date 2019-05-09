@@ -108,6 +108,44 @@ public class KorisnikControllerTest {
  
     }
     
+    
+    @Test
+    public void azurirajKorisnika() throws Exception {
+ 
+    	String str = "Example String";
+    	byte[] b = str.getBytes();
+    	korisnik = new KorisnikModel("email1@email.com", "usernamee", "sifra1%Sifraa", "Imee", "Prezimee", "rolaa",b);
+    	
+        when( korisnikService.azurirajKorisnika(korisnik,1)).thenReturn(povratakIzKorisnika);
+        /*String body1 = "{\r\n" + 
+        		"        \"email\": \"email1@email.com\",\r\n" + 
+        		"        \"username\": \"usernamee\",\r\n" + 
+        		"        \"password\": \"sifra1%Sifraa\",\r\n" + 
+        		"        \"ime\": \"Imee\",\r\n" + 
+        		"        \"prezime\": \"Prezimee\",\r\n" + 
+        		"        \"rola\": \"rolaa\"\r\n" + 
+        		"    }";
+        
+        */String body = "{\"email\":\"email1@email.com\",\"username\":\"usernamee\",\"password\":\"sifra1%Sifraa\",\"ime\":\"Imee\",\"prezime\":\"Prezimee\",\"rola\":\"rolaa\"}";
+        //RequestBody body = RequestBody.create(JSON,body1);
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .put("/azurirajkorisnika/1")
+                .characterEncoding("utf-8")
+                .content(body)
+                .contentType(MediaType.APPLICATION_JSON);
+ 
+        MvcResult result = mockMvc.perform(requestBuilder).andDo(print()).andReturn();
+ 
+        //MockHttpServletResponse response = result.getResponse();
+  
+        String expected = "Korisnik uspješno ažuriran";
+ 
+        assertEquals(expected, result.getResponse().getContentAsString());
+ 
+ 
+    }
+    
+    
     @Test
     public void obrisiKorisnika() throws Exception{
     	Mockito.when( korisnikService.obrisiKorisnika(1)).thenReturn("Korisnik uspješno obrisan");
