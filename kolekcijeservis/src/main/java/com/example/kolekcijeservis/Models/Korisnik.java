@@ -13,7 +13,7 @@ public class Korisnik {
     @Column(name = "id")
     private int id;
 
-    //@Email
+    @Email
     private String email;
 
     private String username;
