@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: etf.nwt.korisnicimikroservis.KorisnikControllerTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 10.684 s <<< FAILURE! - in etf.nwt.korisnicimikroservis.KorisnikControllerTest
+dodajKorisnika(etf.nwt.korisnicimikroservis.KorisnikControllerTest)  Time elapsed: 0.393 s  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<[Korisnik uspješno dodan]> but was:<[]>
+	at etf.nwt.korisnicimikroservis.KorisnikControllerTest.dodajKorisnika(KorisnikControllerTest.java:106)
+
+azurirajKorisnika(etf.nwt.korisnicimikroservis.KorisnikControllerTest)  Time elapsed: 0.057 s  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<[Korisnik uspješno ažuriran]> but was:<[]>
+	at etf.nwt.korisnicimikroservis.KorisnikControllerTest.azurirajKorisnika(KorisnikControllerTest.java:143)
+
