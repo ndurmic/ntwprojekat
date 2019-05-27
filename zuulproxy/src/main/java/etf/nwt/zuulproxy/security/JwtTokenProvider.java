@@ -35,7 +35,7 @@ public class JwtTokenProvider {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
-    public String createToken(String username, List<String> roles) {
+    public String createToken(String username, String roles) {
 
         Claims claims = Jwts.claims().setSubject(username);
         claims.put(AUTH,roles);
@@ -49,6 +49,7 @@ public class JwtTokenProvider {
                 .setExpiration(validity)//
                 .signWith(SignatureAlgorithm.HS256, secretKey)//
                 .compact();
+        token="Bearer "+token;
         jwtTokenRepository.save(new JwtToken(token));
         return token;
     }
@@ -65,6 +66,7 @@ public class JwtTokenProvider {
     }
 
     public boolean validateToken(String token) throws JwtException,IllegalArgumentException{
+    		token=token.substring(7);
             Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
             return true;
     }
@@ -73,17 +75,18 @@ public class JwtTokenProvider {
         if(jwtTokenRepository.findByToken(token)!= null)
             return true;
         else
+        	//na false
             return false;
     }
     //user details with out database hit
     public UserDetails getUserDetails(String token) {
         String userName =  getUsername(token);
-        List<String> roleList = getRoleList(token);
-        UserDetails userDetails = new DBUserDetails(userName,roleList.toArray(new String[roleList.size()]));
+        String roleList = getRoleList(token);
+        UserDetails userDetails = new DBUserDetails(userName,roleList);
         return userDetails;
     }
-    public List<String> getRoleList(String token) {
-        return (List<String>) Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).
+    public String getRoleList(String token) {
+        return (String) Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).
                 getBody().get(AUTH);
     }
 
@@ -94,6 +97,7 @@ public class JwtTokenProvider {
         //using data base: uncomment when you want to fetch data from data base
         //UserDetails userDetails = userDetailsService.loadUserByUsername(getUsername(token));
         //from token take user value. comment below line for changing it taking from data base
+    	token=token.substring(7);
         UserDetails userDetails = getUserDetails(token);
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }

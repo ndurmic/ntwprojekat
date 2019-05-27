@@ -9,6 +9,8 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+
 @Entity
 @Table(name = "korisnici")
 public class KorisnikModel {
@@ -36,6 +38,57 @@ public class KorisnikModel {
 	@Lob
 	@Column(name = "slika")
 	private byte[] slika;
+	@Column(name="active")
+	private Integer active;
+	@Column(name="is_loacked",columnDefinition = "TINYINT(1)")
+
+	private boolean isLoacked;
+	@Column(name="is_expired",columnDefinition = "TINYINT(1)")
+
+    private boolean isExpired;
+	@Column(name="is_enabled",columnDefinition = "TINYINT(1)")
+
+    private boolean isEnabled;
+
+	public Integer getActive() {
+		return active;
+	}
+
+
+	public void setActive(Integer active) {
+		this.active = active;
+	}
+
+
+	public boolean isLoacked() {
+		return isLoacked;
+	}
+
+
+	public void setLoacked(boolean isLoacked) {
+		this.isLoacked = isLoacked;
+	}
+
+
+	public boolean isExpired() {
+		return isExpired;
+	}
+
+
+	public void setExpired(boolean isExpired) {
+		this.isExpired = isExpired;
+	}
+
+
+	public boolean isEnabled() {
+		return isEnabled;
+	}
+
+
+	public void setEnabled(boolean isEnabled) {
+		this.isEnabled = isEnabled;
+	}
+
 
 	public KorisnikModel(String email, String username, String password, String ime, String prezime, String rola,
 			byte[] i) {

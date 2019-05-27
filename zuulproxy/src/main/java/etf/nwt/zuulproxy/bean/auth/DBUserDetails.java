@@ -27,7 +27,7 @@ public class DBUserDetails implements UserDetails
         this.grantedAuthorities = AuthorityUtils.createAuthorityList(authorities);
     }
 
-    public DBUserDetails(String username,  String [] authorities) {
+    public DBUserDetails(String username,  String authorities) {
         this.username = username;
         this.grantedAuthorities = AuthorityUtils.createAuthorityList(authorities);
     }

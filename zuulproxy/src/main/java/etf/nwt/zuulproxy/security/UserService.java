@@ -1,10 +1,9 @@
 package etf.nwt.zuulproxy.security;
 
 import etf.nwt.zuulproxy.bean.auth.DBUserDetails;
-import etf.nwt.zuulproxy.bean.auth.Role;
-import etf.nwt.zuulproxy.bean.auth.User;
+import etf.nwt.zuulproxy.bean.auth.KorisnikModel;
 import etf.nwt.zuulproxy.exception.CustomException;
-import etf.nwt.zuulproxy.repository.UserRepository;
+import etf.nwt.zuulproxy.repository.KorisnikRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,11 +14,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService implements UserDetailsService{
     @Autowired
-    private UserRepository userRepository;
+    private KorisnikRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email);
+        KorisnikModel user = userRepository.findByEmail(email);
         if (user == null || user.getRola() == null || user.getRola().isEmpty()) {
             throw new CustomException("Invalid username or password.", HttpStatus.UNAUTHORIZED);
         }

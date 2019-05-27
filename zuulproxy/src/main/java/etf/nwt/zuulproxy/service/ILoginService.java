@@ -1,10 +1,10 @@
 package etf.nwt.zuulproxy.service;
 
-import etf.nwt.zuulproxy.bean.auth.User;
+import etf.nwt.zuulproxy.bean.auth.KorisnikModel;
 
 public interface ILoginService {
     String login(String username, String password);
-    User saveUser(User user);
+    KorisnikModel saveUser(KorisnikModel user);
 
     boolean logout(String token);
 

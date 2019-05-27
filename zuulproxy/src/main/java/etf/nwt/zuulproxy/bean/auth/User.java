@@ -5,10 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import java.util.Set;
 
 @Entity
+@Table(name = "user")
 public class User {
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,10 +25,14 @@ public class User {
 	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{7,20}$")
 	@Column(name = "password")
 	private String password;
-	private Integer active=1;
-    private boolean isLoacked=false;
-    private boolean isExpired=false;
-    private boolean isEnabled=true;
+	@Column(name="active")
+	private Integer active;
+	@Column(name="is_loacked")
+    private boolean isLoacked;
+	@Column(name="is_expired")
+    private boolean isExpired;
+	@Column(name="is_enabled")
+    private boolean isEnabled;
     @Column(name = "rola")
     private String rola;
 
