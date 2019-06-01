@@ -4,13 +4,12 @@ etf\nwt\zuulproxy\App.class
 etf\nwt\zuulproxy\exception\GlobalExceptionHandlerController.class
 etf\nwt\zuulproxy\security\JwtTokenFilterConfigurer.class
 etf\nwt\zuulproxy\security\UserService.class
-etf\nwt\zuulproxy\repository\UserRepository.class
-etf\nwt\zuulproxy\bean\auth\User.class
 etf\nwt\zuulproxy\security\JwtTokenFilter.class
 etf\nwt\zuulproxy\service\ILoginService.class
 etf\nwt\zuulproxy\security\JwtTokenProvider.class
+etf\nwt\zuulproxy\bean\auth\KorisnikModel.class
 etf\nwt\zuulproxy\bean\auth\DBUserDetails.class
-etf\nwt\zuulproxy\bean\auth\Role.class
+etf\nwt\zuulproxy\repository\KorisnikRepository.class
 etf\nwt\zuulproxy\service\serviceimpl\LoginService.class
 etf\nwt\zuulproxy\repository\JwtTokenRepository.class
 etf\nwt\zuulproxy\bean\auth\AuthResponse.class

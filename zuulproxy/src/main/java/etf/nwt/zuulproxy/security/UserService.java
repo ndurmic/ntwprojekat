@@ -30,6 +30,18 @@ public class UserService implements UserDetailsService{
         return userDetails;
     }
 
+    public String addKorisnik(KorisnikModel k) {
+        try {
+            userRepository.save(k);
+        } catch (Exception e) {
+            //return e.toString();
+            return "Nisu podaci validni";
+        }
+        return "Korisnik uspješno dodan";
+    }
+
+
+
 
 
 }

@@ -5,15 +5,14 @@ C:\Users\Cofa\Desktop\FAKULTET\njihoviProjekti\zuulproxy\src\main\java\etf\nwt\z
 C:\Users\Cofa\Desktop\FAKULTET\njihoviProjekti\zuulproxy\src\main\java\etf\nwt\zuulproxy\controller\LoginController.java
 C:\Users\Cofa\Desktop\FAKULTET\njihoviProjekti\zuulproxy\src\main\java\etf\nwt\zuulproxy\exception\CustomException.java
 C:\Users\Cofa\Desktop\FAKULTET\njihoviProjekti\zuulproxy\src\main\java\etf\nwt\zuulproxy\bean\auth\DBUserDetails.java
-C:\Users\Cofa\Desktop\FAKULTET\njihoviProjekti\zuulproxy\src\main\java\etf\nwt\zuulproxy\bean\auth\User.java
+C:\Users\Cofa\Desktop\FAKULTET\njihoviProjekti\zuulproxy\src\main\java\etf\nwt\zuulproxy\bean\auth\KorisnikModel.java
+C:\Users\Cofa\Desktop\FAKULTET\njihoviProjekti\zuulproxy\src\main\java\etf\nwt\zuulproxy\repository\KorisnikRepository.java
 C:\Users\Cofa\Desktop\FAKULTET\njihoviProjekti\zuulproxy\src\main\java\etf\nwt\zuulproxy\exception\GlobalExceptionHandlerController.java
 C:\Users\Cofa\Desktop\FAKULTET\njihoviProjekti\zuulproxy\src\main\java\etf\nwt\zuulproxy\repository\JwtTokenRepository.java
 C:\Users\Cofa\Desktop\FAKULTET\njihoviProjekti\zuulproxy\src\main\java\etf\nwt\zuulproxy\security\WebSecurityConfig.java
-C:\Users\Cofa\Desktop\FAKULTET\njihoviProjekti\zuulproxy\src\main\java\etf\nwt\zuulproxy\repository\UserRepository.java
 C:\Users\Cofa\Desktop\FAKULTET\njihoviProjekti\zuulproxy\src\main\java\etf\nwt\zuulproxy\service\serviceimpl\LoginService.java
 C:\Users\Cofa\Desktop\FAKULTET\njihoviProjekti\zuulproxy\src\main\java\etf\nwt\zuulproxy\security\UserService.java
 C:\Users\Cofa\Desktop\FAKULTET\njihoviProjekti\zuulproxy\src\main\java\etf\nwt\zuulproxy\security\JwtTokenFilterConfigurer.java
 C:\Users\Cofa\Desktop\FAKULTET\njihoviProjekti\zuulproxy\src\main\java\etf\nwt\zuulproxy\bean\auth\LoginRequest.java
 C:\Users\Cofa\Desktop\FAKULTET\njihoviProjekti\zuulproxy\src\main\java\etf\nwt\zuulproxy\service\ILoginService.java
 C:\Users\Cofa\Desktop\FAKULTET\njihoviProjekti\zuulproxy\src\main\java\etf\nwt\zuulproxy\bean\auth\JwtToken.java
-C:\Users\Cofa\Desktop\FAKULTET\njihoviProjekti\zuulproxy\src\main\java\etf\nwt\zuulproxy\bean\auth\Role.java

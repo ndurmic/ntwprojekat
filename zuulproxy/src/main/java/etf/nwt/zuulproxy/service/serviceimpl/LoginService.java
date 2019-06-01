@@ -89,4 +89,6 @@ public class LoginService implements ILoginService
         String newToken =  jwtTokenProvider.createToken(username,roleList);
         return newToken;
     }
+
+
 }

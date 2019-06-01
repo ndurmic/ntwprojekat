@@ -10,7 +10,7 @@ services:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_PASSWORD=root
     entrypoint:
-      sh -c " echo 'CREATE DATABASE IF NOT EXISTS biblioteka; CREATE DATABASE IF NOT EXISTS mydb; CREATE DATABASE IF NOT EXISTS nwt;' > /docker-entrypoint-initdb.d/init.sql; /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci"
+      sh -c " echo 'CREATE DATABASE IF NOT EXISTS biblioteka; CREATE DATABASE IF NOT EXISTS mydb; CREATE DATABASE IF NOT EXISTS nwt; CREATE DATABASE IF NOT EXISTS zuul;' > /docker-entrypoint-initdb.d/init.sql; /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci"
   
   app:
     image: app:latest
@@ -25,6 +25,17 @@ services:
       - 5672:5672
       - 15672:15672
 
+  korisnici:
+    image: korisnici:latest
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+    depends_on:
+      - app
+      - rabbitmq
+      - ebiblioteka
+    network_mode: "host"
 
   knjige:
     image: knjige:latest
@@ -50,18 +61,6 @@ services:
       - ebiblioteka
     network_mode: "host"
 
-  korisnici:
-    image: korisnici:latest
-    expose:
-      - 8080
-    ports:
-      - 8080:8080
-    depends_on:
-      - app
-      - rabbitmq
-      - ebiblioteka
-    network_mode: "host"
-
   zuul:
     image: zuul:latest
     expose:
@@ -70,4 +69,5 @@ services:
       - 9000:9000
     depends_on:
       - app
+      - ebiblioteka
     network_mode: "host"
