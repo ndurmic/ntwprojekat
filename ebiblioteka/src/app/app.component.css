@@ -1,0 +1,15 @@
+.okvir{
+    width:60%;
+    background-color: rgba(240, 236, 236, 0.966);
+    margin: 0 auto;
+}
+.container{
+    width: 100%;
+    min-height: 630px;
+    
+}
+.parent{
+    background-image: url("../assets/bb.jpg");
+    background-size:contain;
+    
+}

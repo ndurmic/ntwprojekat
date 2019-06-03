@@ -1,0 +1,47 @@
+h1{
+    color: rgba(65, 49, 1, 0.705);
+}
+p{
+    font-size: 1.1em;
+    font-family: "Century Gothic";
+    color: rgb(177, 177, 177);
+    
+}
+.tekst{
+    margin-left: 70px;
+    margin-right: 70px;
+    margin-top:40px;
+}
+.prviDioo{
+    background-image: url("../../assets/homeBackground.png");
+    background-size:contain;
+    background-repeat:no-repeat;
+}
+
+hr{
+    color:rgb(255, 254, 254);
+}
+h2{
+    text-align: center;
+    color: rgba(1, 36, 65, 0.705);
+    font-family: "Century Gothic";
+}
+.slika{
+    background-size:contain;
+    background-repeat:no-repeat;
+    text-align: center;
+}
+.opis{
+    text-align: center;
+}
+
+button{
+    background-color: rgba(65, 49, 1, 0.705);
+    border-color:black;
+}
+button:hover{
+    background-color: rgba(187, 175, 140, 0.705)
+}
+.drugiDio{
+    width:100%;
+}

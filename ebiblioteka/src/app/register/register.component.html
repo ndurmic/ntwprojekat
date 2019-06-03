@@ -1,0 +1,120 @@
+<div class="background">
+  <div class="container">
+  <div >
+      <div >
+        <form (ngSubmit)="onSignup()" [formGroup]="registerFormGroup" id="forma">
+
+
+            <div class="form-group">
+                <div class="row">
+                  <div class=".col-" id="lock">
+                    <i class="fa fa-user"></i>
+                  </div>
+                  <div class="col">
+                    <input type="email"
+                  
+                  id="ime"
+                  name="ime"
+                  [(ngModel)]="ime"
+                  class="form-control"
+                  formControlName="ime"
+                  placeholder="Ime"
+                  >
+                  </div>
+                </div> 
+                
+              </div>
+
+
+              <div class="form-group">
+                  <div class="row">
+                    <div class=".col-" id="lock">
+                      <i class="fa fa-user"></i>
+                    </div>
+                    <div class="col">
+                      <input type="name"
+                    
+                    id="prezime"
+                    name="prezime"
+                    [(ngModel)]="prezime"
+                    class="form-control"
+                    formControlName="prezime"
+                    placeholder="Prezime"
+                    >
+                    </div>
+                  </div> 
+                  
+                </div>
+
+
+          <div class="form-group">
+            <div class="row">
+              
+                <div class=".col" id="envelope">
+                    <i class="fa fa-envelope"></i>
+                  </div>
+                  <div class="col">
+                  <input type="email" 
+                  id="email" 
+                  name="email" 
+                  class="form-control" 
+                  formControlName="mail" 
+                  [(ngModel)]="mail"
+                  placeholder="Email">
+          
+                  </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class=".col-" id="lock">
+                <i class="fa fa-lock"></i>
+              </div>
+              <div class="col">
+                <input
+              type="password"
+              id="password"
+              name="password"
+              [(ngModel)]="password"
+              class="form-control"
+              formControlName="password"
+              placeholder="Password"
+              >
+              </div>
+            </div> 
+            
+          </div>
+
+          <div class="form-group">
+            <div class="row">
+              <div class=".col-" id="lock">
+                <i class="fa fa-lock"></i>
+              </div>
+              <div class="col">
+                <input
+              type="password"
+              id="passwordPotvrda"
+              name="passwordPotvrda"
+              [(ngModel)]="passwordPotvrda"
+              class="form-control"
+              formControlName="passwordPotvrda"
+              placeholder="Potvrda passworda"
+              >
+              </div>
+            </div> 
+            
+          </div>
+
+          
+
+
+
+          <div>
+            <button class="btn btn-primary" type="submit" id="button">Sign Up</button>
+          </div>
+          
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>

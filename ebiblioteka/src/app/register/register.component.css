@@ -1,0 +1,38 @@
+.background{
+    height:630px;
+    padding-top: 100px;
+}
+.container{
+    width: 50%;
+    vertical-align: 5em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    
+    
+}
+input{
+    
+    background-color: rgba(180, 180, 179, 0.932);
+    width:100%;
+}
+#lock{
+    margin-top:5px;
+    margin-right: 2.5px;
+    margin-left:24px;
+}
+#envelope{
+    margin-left:20px;
+    margin-top:5px;
+}
+#button{
+    border-color: rgb(211, 211, 211);
+    background-color: rgba(223, 180, 100, 0.541);
+    margin-bottom: 5px;
+}
+#forma{
+    width:100%;
+    
+}
+.row{
+    padding-top: 20px;
+}

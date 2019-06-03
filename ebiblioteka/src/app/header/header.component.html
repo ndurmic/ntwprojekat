@@ -1,0 +1,26 @@
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">eBiblioteka</a>
+  <div class="navbar-expand mr-auto">
+    <div class="navbar-nav">
+      <a *ngIf="prijavljen===true" class="nav-item nav-link" href="#" (click)="onSelect('knjige')">Knjige</a>
+      <a *ngIf="prijavljen===true"class="nav-item nav-link" href="#" (click)="onSelect('kolekcije')">Kolekcije</a>
+      <a *ngIf="prijavljen===true"class="nav-item nav-link" href="#" (click)="onSelect('profil')">Profil</a>
+      
+      
+    </div>
+  </div>
+  <div class="navbar-expand ml-auto navbar-nav">
+    <div class="navbar-nav">
+      
+          <a *ngIf="prijavljen===false" class="nav-item nav-link" href="#" (click)="onSelect('registracija')">Registracija</a>
+          <a *ngIf="prijavljen===false" class="nav-item nav-link">|</a>
+          <a *ngIf="prijavljen===false" class="nav-item nav-link" href="#" (click)="onSelect('prijava')">Prijava</a>
+          
+          <a *ngIf="prijavljen===true"class="nav-item nav-link" href="#" (click)="onSelect('odjava')">Odjavi se</a>
+      
+      
+      
+      
+    </div>
+  </div>
+</nav>
