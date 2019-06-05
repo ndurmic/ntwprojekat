@@ -1,0 +1,61 @@
+#plus{
+    font-size: 50px;
+    color: rgba(29, 29, 29, 0.301);
+    border-width: 5px;
+    border-style: solid;
+  border-radius: 0.5rem;
+  border-color:white;
+  width: 240px;
+  height: 240px;
+  margin-left: 10px;
+  margin-top: 10px;
+    text-align: center;
+    
+    line-height: 240px;
+}
+
+
+#plus:hover{
+    cursor: pointer;
+    font-size: 60px;
+}
+
+.novaKolekcija{
+    border-width: 5px;
+    border-style: solid;
+  border-radius: 0.5rem;
+  border-color:white;
+    width: 240px;
+  height: 240px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+
+
+  
+ 
+  
+  li {
+    float: left;
+    display: block;
+    
+  }
+  
+  #kolekcija{
+      width: 240px;
+      height: 240px;
+      margin: 10px;
+  }
+  
+  #button{
+      background-color: rgb(189, 190, 101);
+      border-color:white;
+      margin-top: 5px;
+  }
+
+  #naziv{
+      margin-top: 20px;
+      background-color: rgb(235, 235, 235);
+      border-color: rgb(197, 197, 197);
+  }

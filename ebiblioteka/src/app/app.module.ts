@@ -17,6 +17,11 @@ import { KolekcijaDetailsComponent } from './kolekcije/kolekcija-details/kolekci
 import { KolekcijaItemComponent } from './kolekcije/kolekcija-item/kolekcija-item.component';
 import { KnjigaItemComponent } from './knjiga-list/knjiga-item/knjiga-item.component';
 import { HomeComponent } from './home/home.component';
+import { AppRoutingModule } from './app-routing.module';
+import { KnjigeService } from './services/knjige.service';
+import { KolekcijeService } from './services/kolekcije.service';
+import { ServerService } from './services/server.service';
+import { HttpModule } from '@angular/http';
 
 
 
@@ -40,9 +45,9 @@ import { HomeComponent } from './home/home.component';
     HomeComponent
   ],
   imports: [
-    BrowserModule, FormsModule, ReactiveFormsModule
+    BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HttpModule
   ],
-  providers: [],
+  providers: [KnjigeService, KolekcijeService, ServerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,51 @@
-<div class="d-flex flex-row">
-    <div class="p-2" *ngFor="let kolekcija of kolekcije">
-        <app-kolekcija-item  [kolekcija]="kolekcija"></app-kolekcija-item>
+
+<div>
+        <ul>
+            
+        <div style="display: inline-block; float: left;" *ngFor="let kolekcija of kolekcije" id="kolekcija">
+            <app-kolekcija-item  [kolekcija]="kolekcija"></app-kolekcija-item>
+        </div>
+    
+    <li>
+        <div id="plus" *ngIf="showPlus">
+                <i class="fa fa-plus" aria-hidden="true" (click)="showAdd()"></i>
+        </div>
+    </li>
+    <li>
+        <div >
+            
+                <div class="novaKolekcija" *ngIf="!showPlus">
+                    <br> <br> 
+                        <form (ngSubmit)="onSubmit()" [formGroup]="addKolekcijaFormGroup" id="forma">
+                          <div class="form-group">
+                              
+                                  
+                                    <div class="d-flex flex-column">
+                                        <div class="p-2">
+                            <input type="email" 
+                            id="naziv" 
+                            name="naziv" 
+                            class="form-control" 
+                            formControlName="naziv" 
+                            [(ngModel)]="naziv"
+                            placeholder="Naziv">
+                                  </div>
+              
+                                  
+                                  <div class="align-self-center">
+                                  <div class="p-2">
+                                          <button class="btn btn-primary" type="submit" id="button">Dodaj</button>
+                                  </div>
+                                </div>
+              
+                          </div>
+                          
+                          </div>
+                          </form>
+                      </div>
+        </div>
+    </li>
+    </ul>
     </div>
-</div>
+        
     

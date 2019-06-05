@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Knjiga } from '../zmodels/knjiga.model';
+import { KnjigeService } from '../services/knjige.service';
 
 @Component({
   selector: 'app-knjiga-list',
@@ -8,14 +9,14 @@ import { Knjiga } from '../zmodels/knjiga.model';
 })
 export class KnjigaListComponent implements OnInit {
 
-  public knjige: Knjiga[] = [
-    new Knjiga('Knjiga 1','Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit quos eius id maxime quasi ratione, modi recusandae voluptas necessitatibus dolores labore voluptatem quia repellendus architecto, mollitia quae consequuntur expedita sint?','https://evrobook.rs/fajlovi/product/jezeva-kucica-jezeva-kucica_59c36d949222f.jpg'),
-    new Knjiga('Knjiga 2','Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit quos eius id maxime quasi ratione, modi recusandae voluptas necessitatibus dolores labore voluptatem quia repellendus architecto, mollitia quae consequuntur expedita sint?','https://evrobook.rs/fajlovi/product/jezeva-kucica-jezeva-kucica_59c36d949222f.jpg')
-  ];
+  public knjige: Knjiga[];
 
-  constructor() { }
+  constructor(private knjigeService: KnjigeService) { }
 
   ngOnInit() {
+    this.knjige=this.knjigeService.getKnjige();
   }
+
+  
 
 }

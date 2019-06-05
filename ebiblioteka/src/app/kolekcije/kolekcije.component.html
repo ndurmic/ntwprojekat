@@ -1,3 +1,20 @@
-<p>
-  kolekcije works!
-</p>
+
+<div class="container">
+    <section id="tabs">
+      <div class="containerr">
+        <!-- <h6 class="section-title h1">Tabs</h6> -->
+        <div class="row">
+          <div class="col-xs-12 ">
+            <nav>
+              <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab"  role="tab" routerLinkActive="active" [routerLink]="['personalne']" aria-controls="nav-home" aria-selected="true">Moje kolekcije</a>
+                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"  role="tab" routerLinkActive="active"  [routerLink]="['javne']" aria-controls="nav-profile" aria-selected="false">Javne kolekcije</a>
+                </div>
+            </nav>
+          
+          </div>
+        </div>
+      </div>
+    </section>
+    <router-outlet></router-outlet>
+  </div>

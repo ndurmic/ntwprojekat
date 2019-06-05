@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Kolekcija } from 'src/app/zmodels/kolekcija.model';
+import { KolekcijeService } from 'src/app/services/kolekcije.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-kolekcija-list',
@@ -8,13 +10,30 @@ import { Kolekcija } from 'src/app/zmodels/kolekcija.model';
 })
 export class KolekcijaListComponent implements OnInit {
 
-  kolekcije: Kolekcija[] = [
-    new Kolekcija('Kolekcija 1',true),
-    new Kolekcija('Kolekcija 2',true),
-  ];
-  constructor() { }
+  kolekcije: Kolekcija[];
+  showPlus=true;
+  naziv: string;
+  addKolekcijaFormGroup: FormGroup;
+  constructor(private kolekcijeService: KolekcijeService) { }
 
   ngOnInit() {
+    this.kolekcije=this.kolekcijeService.getKolekcije();
+
+    this.addKolekcijaFormGroup = new FormGroup({
+      'naziv': new FormControl()
+   });
+  }
+
+  showAdd(){
+    this.showPlus=false;
+  }
+
+  onSubmit(){
+    this.showPlus=true;
+    if(this.naziv!=null){
+      this.kolekcijeService.addKolekcija(this.naziv);
+    }
+    
   }
 
 }

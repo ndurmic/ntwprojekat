@@ -8,12 +8,14 @@
   
   border-left: 0 solid #ebc5eed0;
   transition: border-left 300ms ease-in-out, padding-left 300ms ease-in-out;
-    max-width: 300px;
+    width:240px;
+    height: 240px;
 }
 
 .kolekcija:hover {
     padding-left: 0.5rem;
     border-left: 0.5rem solid rgba(255, 237, 204, 0.664);
+    cursor: pointer;
   }
   
   .thing > :first-child {

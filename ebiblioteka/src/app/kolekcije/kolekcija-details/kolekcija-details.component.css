@@ -1,0 +1,29 @@
+.knjiga{
+    max-height: 50px;
+    
+}
+p{
+    font-size: 25px;
+    margin-top:12px;
+    margin-left:12px;
+}
+#knjiga {
+    
+    
+    
+    
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    padding:1em;
+    line-height:1.5em;
+    background:rgb(228, 221, 207);
+    border:solid 5px rgb(199, 137, 43);
+  
+}
+
+#trash{
+    margin-left: 30px;
+    font-size: 20px;
+}
+#trash:hover{
+    cursor: pointer;
+}

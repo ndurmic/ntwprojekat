@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Kolekcija } from 'src/app/zmodels/kolekcija.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-kolekcija-item',
@@ -8,11 +9,15 @@ import { Kolekcija } from 'src/app/zmodels/kolekcija.model';
 })
 export class KolekcijaItemComponent implements OnInit {
   @Input() kolekcija: Kolekcija;
-  constructor() { 
+  constructor(private router: Router) { 
     
   }
 
   ngOnInit() {
+  }
+  
+  onSelected(){
+    this.router.navigate(['kolekcije/'+this.kolekcija.id]);
   }
 
 }

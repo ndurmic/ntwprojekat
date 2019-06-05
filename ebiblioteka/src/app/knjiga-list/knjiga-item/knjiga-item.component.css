@@ -1,4 +1,21 @@
 .knjiga{
     background-color:rgba(94, 59, 27, 0.24);
     margin-bottom: 10px;
+    
+}
+.knjiga:hover{
+    cursor: pointer;
+}
+
+#knjiga {
+    
+    
+    
+    
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    padding:1em;
+    line-height:1.5em;
+    background:rgb(228, 221, 207);
+    border:solid 5px rgb(199, 137, 43);
+  
 }

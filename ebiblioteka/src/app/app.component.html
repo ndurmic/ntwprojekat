@@ -1,16 +1,18 @@
 <div class="parent">
   <div class="okvir">
-  <app-header (sectionSelected)="onNavigate($event)"></app-header>
+  <app-header></app-header>
   <div class="container">
 
-  
+  <!--
   <app-home *ngIf="prijavljen===false && loadedSection==='pocetna'"></app-home>
 <app-knjiga-list *ngIf="loadedSection==='knjige'"></app-knjiga-list>
 <app-register *ngIf="loadedSection==='registracija'"></app-register>
 <app-login *ngIf="loadedSection==='prijava'"></app-login>
 <app-kolekcija-list *ngIf="loadedSection==='kolekcije'"></app-kolekcija-list>
-<app-knjiga-details *ngIf="loadedSection==='detaljiKnjige'"></app-knjiga-details>
-</div>
+<app-knjiga-details *ngIf="loadedSection==='detaljiKnjige'"></app-knjiga-details> -->
+
+<router-outlet></router-outlet>
+</div> 
 <app-footer></app-footer>
 </div>
 </div>
