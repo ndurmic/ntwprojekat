@@ -22,6 +22,8 @@ import { KnjigeService } from './services/knjige.service';
 import { KolekcijeService } from './services/kolekcije.service';
 import { ServerService } from './services/server.service';
 import { HttpModule } from '@angular/http';
+import { AuthService } from './services/auth.service';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 
@@ -45,9 +47,9 @@ import { HttpModule } from '@angular/http';
     HomeComponent
   ],
   imports: [
-    BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HttpModule
+    BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HttpModule, NgSelectModule
   ],
-  providers: [KnjigeService, KolekcijeService, ServerService],
+  providers: [KnjigeService, KolekcijeService, ServerService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

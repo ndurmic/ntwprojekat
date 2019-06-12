@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormControl } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   mail: string;
   password: string;
   loginFormGroup: FormGroup;
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
     this.loginFormGroup = new FormGroup({
@@ -23,7 +24,22 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(){
-    
+    console.log(this.mail+this.password);
+    if(this.mail!=null && this.password!=null){
+      this.authService.login(this.mail, this.password).subscribe(
+        (response) => {
+          const data= response.json();
+          console.log(data);
+          if(response!=null){
+            this.authService.onLoggedInSuccesfully('admin');
+          }
+          else{
+            this.message="Username or password was incorrect";
+          }
+        },
+        (error)=>console.log(error)
+      );
+    }
   }
 
 }

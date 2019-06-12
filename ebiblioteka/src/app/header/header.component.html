@@ -1,23 +1,32 @@
 <nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand" href="/">eBiblioteka</a>
   <div class="navbar-expand mr-auto">
+      
     <div class="navbar-nav">
-      <a *ngIf="prijavljen===true" class="nav-item nav-link" routerLink="/knjige" routerLinkActive="active">Knjige</a>
-      <a *ngIf="prijavljen===true" class="nav-item nav-link" routerLink="/kolekcije" routerLinkActive="active">Kolekcije</a>
-      <a *ngIf="prijavljen===true" class="nav-item nav-link" routerLink="/home" routerLinkActive="active">Profil</a>
+        <ng-template [ngIf]="authService.isAuth() && authService.getRole()=='user'">
+      <a  class="nav-item nav-link" routerLink="/knjige" routerLinkActive="active">Knjige</a>
+      <a  class="nav-item nav-link" routerLink="/kolekcije" routerLinkActive="active">Kolekcije</a>
+      <a  class="nav-item nav-link" routerLink="/home" routerLinkActive="active">Profil</a>
       
-      
+    </ng-template>
     </div>
+      
   </div>
   <div class="navbar-expand ml-auto navbar-nav">
     <div class="navbar-nav">
-      
-          <a *ngIf="prijavljen===false" class="nav-item nav-link" routerLink="/register" routerLinkActive="active">Registracija</a>
-          <a *ngIf="prijavljen===false" class="nav-item nav-link">|</a>
-          <a *ngIf="prijavljen===false" class="nav-item nav-link" routerLink="/login" routerLinkActive="active">Prijava</a>
-          
-          <a *ngIf="prijavljen===true"class="nav-item nav-link" href="#">Odjavi se</a>
-      
+        <ng-template [ngIf]="!authService.isAuth()">
+          <a  class="nav-item nav-link" routerLink="/register" routerLinkActive="active">Registracija</a>
+          <a  class="nav-item nav-link">|</a>
+          <a  class="nav-item nav-link" routerLink="/login" routerLinkActive="active">Prijava</a>
+        </ng-template>
+
+        <ng-template [ngIf]="authService.isAuth() && authService.getRole()=='admin'">
+            <a class="nav-item nav-link" routerLink="/adminconfiguration">Admin configuration manager</a>
+        </ng-template>
+
+        <ng-template [ngIf]="authService.isAuth()">
+          <a class="nav-item nav-link" (click)="onLogOut()" style="cursor:pointer">Odjavi se</a>
+        </ng-template>
       
       
       

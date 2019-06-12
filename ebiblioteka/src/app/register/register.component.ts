@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormControl } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +17,7 @@ export class RegisterComponent implements OnInit {
   password: string;
   passwordPotvrda: string;
   registerFormGroup: FormGroup;
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.registerFormGroup = new FormGroup({
@@ -29,6 +31,17 @@ export class RegisterComponent implements OnInit {
 
   onSignup(){
     
+    console.log(this.mail+this.password);
+    if(this.mail!=null && this.password!=null){
+      this.authService.register(this.mail, this.password).subscribe(
+        (response) => {
+          const data= response.json();
+          console.log(data);
+          this.router.navigate(['/login']);
+        },
+        (error)=>console.log(error)
+      );
+    }
     
   }
 

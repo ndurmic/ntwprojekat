@@ -6,8 +6,9 @@
 <div class="d-flex flex-column">
     <div class="p-2">              <div class="okvir">       <img src="{{knjiga.imagePath}}" alt="Slika" class="img-responsive" style="max-height: 300px; max-width: 300px;">   </div>    </div>
     <div class="p-2">    <h3>{{knjiga.naziv}}</h3>         </div>
-    <div class="p-2">{{knjiga.rating}}</div>
+    <div class="p-2">Rating: {{knjiga.rating}}</div>
     <div class="p-2">Datum izdavanja: 27/08/1958.</div>
+    
   </div>
   </div>
   <div class="p-2">
@@ -37,12 +38,10 @@
                   <div class="p-2">
                     Kategorije:
                   </div>
-                  <div class="p-2">
-                      Katergorija1
+                  <div class="p-2" *ngFor="let kategorija of knjiga.kategorije">
+                      {{kategorija}}
                     </div>
-                    <div class="p-2">
-                        Katergorija2
-                      </div>
+                    
                 </div>
           </div>
         </div>
@@ -51,6 +50,98 @@
 </div>
 </div>
 </div>
+<div class="d-flex flex-row">
+    <div class="p-2">
+
+        
+        <label>Dodaj u kolekciju:</label>
+        <ng-select [items]="mojeKolekcije"
+                   bindLabel="naziv"
+                   bindValue="id"
+                   [multiple]="true"
+                   placeholder="Odaberi kolekcije"
+                   [(ngModel)]="selectedKolekcijeIds">
+        </ng-select>
+      </div>
+        <div class="align-self-end">
+        <div class="p-2">
+            <button class="btn btn-primary" type="submit" id="buttonSave" (click)="saveToCollections()" style="background-color: rgb(197, 181, 128); border-color: rgb(255, 255, 255)">Save</button>
+          </div>
+        </div>
+              
+
+
+    
+</div>
+
+<hr>
+
+
+
+           
+    <div *ngFor="let komentar of knjiga.komentari" >
+      <div class="d-flex flex-column">
+        <div class="p-2">
+      Korisnik sa id-om: {{komentar.idKorisnika}} je komentarisao:
+    </div>
+    <div class="p-2">
+        <textarea  readonly name="opis"  [(ngModel)]="komentar.komentar"  style="width:400px; height:100px;">
+                             
+          </textarea>
+          <hr>
+        </div>
+    </div>
+  </div>
+    <div >
+        
+            <div class="noviKomentar" >
+                <br> <br> 
+                    <form [formGroup]="addKomentarFormGroup" id="forma">
+                      <div class="form-group">
+                          
+                              
+                               <div class="d-flex flex-row"> 
+                                 <div class="p-2">
+                          <textarea name="noviKomentar" class="form-control" formControlName="noviKomentar" [(ngModel)]="noviKomentar"  style="width:400px; height:100px;">
+                              
+                            </textarea>
+                              
+          
+                              <br>
+                              
+                                      <button class="btn btn-primary" type="submit" id="button" style="background-color: rgb(197, 181, 128); border-color: rgb(255, 255, 255)" (click)="onAddKomentar()">Dodaj komentar</button>
+                                    </div>
+                                    <div class="ml-auto p-2">
+                                        <input type="number" 
+                                        min="1"
+                                        max="5"
+                                        class="form-control" 
+                                        formControlName="ocjena" 
+                                        [(ngModel)]="ocjena"
+                                        
+                                        >
+                                    
+                                    <br>
+                              
+                                    <button class="btn btn-primary" type="submit" id="button" style="background-color: rgb(197, 181, 128); border-color: rgb(255, 255, 255)" (click)="onAddOcjena()">Ocijeni</button>
+                                  
+                                  </div>
+
+
+                                </div>
+
+
+
+                      </div>
+                      
+                      
+                      </form>
+                    </div>
+                  </div>
+  
+
+
+
 
 
 </div>

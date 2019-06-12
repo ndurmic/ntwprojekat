@@ -15,6 +15,7 @@ export class KnjigaListComponent implements OnInit {
 
   ngOnInit() {
     this.knjige=this.knjigeService.getKnjige();
+    
   }
 
   

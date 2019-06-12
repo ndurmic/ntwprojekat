@@ -7,11 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ebiblioteka';
-  loadedSection='detaljiKnjige';
-  prijavljen:boolean=true;
-  onNavigate(section: string){
-    this.loadedSection=section;
-  }
-
 
 }

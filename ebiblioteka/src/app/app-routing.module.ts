@@ -6,6 +6,9 @@ import { KolekcijeComponent } from './kolekcije/kolekcije.component';
 import { KnjigaDetailsComponent } from './knjiga-list/knjiga-details/knjiga-details.component';
 import { KolekcijaDetailsComponent } from './kolekcije/kolekcija-details/kolekcija-details.component';
 import { KolekcijaListComponent } from './kolekcije/kolekcija-list/kolekcija-list.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { AdminMangmentComponent } from './admin-mangment/admin-mangment.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent , pathMatch:"full"},
@@ -15,7 +18,10 @@ const appRoutes: Routes = [
       {path: 'personalne', component: KolekcijaListComponent},
       { path: 'javne', component: KolekcijaListComponent }
     ] },
-    { path: 'kolekcije/:id', component: KolekcijaDetailsComponent}
+    { path: 'kolekcije/:id', component: KolekcijaDetailsComponent},
+    { path: 'register', component: RegisterComponent},
+    { path: 'login', component: LoginComponent},
+    {path: 'adminconfiguration', component: AdminMangmentComponent}
   ];
 
 @NgModule({

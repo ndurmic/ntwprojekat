@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Kolekcija } from 'src/app/zmodels/kolekcija.model';
 import { KolekcijeService } from 'src/app/services/kolekcije.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-kolekcija-list',
@@ -14,14 +16,21 @@ export class KolekcijaListComponent implements OnInit {
   showPlus=true;
   naziv: string;
   addKolekcijaFormGroup: FormGroup;
-  constructor(private kolekcijeService: KolekcijeService) { }
+  constructor(private kolekcijeService: KolekcijeService, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    this.kolekcije=this.kolekcijeService.getKolekcije();
+    if(this.router.url==='/kolekcije/personalne'){
+      this.kolekcije=this.kolekcijeService.getKolekcijeByLoggedKorisnikId();
+    }
+    else {
+      this.kolekcije=this.kolekcijeService.getJavneKolekcije();
+    }
+    
 
     this.addKolekcijaFormGroup = new FormGroup({
       'naziv': new FormControl()
    });
+   console.log(this.router.url);
   }
 
   showAdd(){
@@ -31,9 +40,14 @@ export class KolekcijaListComponent implements OnInit {
   onSubmit(){
     this.showPlus=true;
     if(this.naziv!=null){
-      this.kolekcijeService.addKolekcija(this.naziv);
+      this.kolekcijeService.addKolekcija(this.naziv, this.authService.getLoggedUserId());
     }
-    
+    if(this.router.url==='/kolekcije/personalne'){
+      this.kolekcije=this.kolekcijeService.getKolekcijeByLoggedKorisnikId();
+    }
+    else {
+      this.kolekcije=this.kolekcijeService.getJavneKolekcije();
+    }
   }
 
 }

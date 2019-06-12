@@ -27,3 +27,6 @@ p{
 #trash:hover{
     cursor: pointer;
 }
+.container{
+    min-height: 1000px;
+}
