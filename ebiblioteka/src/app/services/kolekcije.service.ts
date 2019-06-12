@@ -17,7 +17,7 @@ export class KolekcijeService {
       ];
 
       constructor(private authService: AuthService, private serverService: ServerService){
-
+          this.fetchAllKolekcije();
       }
 
       getKolekcije(){

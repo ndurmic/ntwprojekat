@@ -5,18 +5,16 @@ import { AuthService } from './auth.service';
 import { Komentar } from '../zmodels/komentar.model';
 @Injectable()
 export class KnjigeService {
-    private knjige: Knjiga[] = [
-        new Knjiga(1,'Knjiga 1','Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit quos eius id maxime quasi ratione, modi recusandae voluptas necessitatibus dolores labore voluptatem quia repellendus architecto, mollitia quae consequuntur expedita sint?','https://evrobook.rs/fajlovi/product/jezeva-kucica-jezeva-kucica_59c36d949222f.jpg', 4, ['Drama', 'Komedija']),
-        new Knjiga(2,'Knjiga 2','Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit quos eius id maxime quasi ratione, modi recusandae voluptas necessitatibus dolores labore voluptatem quia repellendus architecto, mollitia quae consequuntur expedita sint?','https://evrobook.rs/fajlovi/product/jezeva-kucica-jezeva-kucica_59c36d949222f.jpg', 4.5, ['Triler'])
-      ];
-
+    private knjige: Knjiga[]; 
+    ucitao:boolean=false;
 
       constructor(private serverService: ServerService, private authService: AuthService){
-
+          this.fetchAllKnjige();
+          console.log("Konstruktor brzi");
       }
       
       getKnjige(){
-          return this.knjige;
+        return this.knjige;
       }
       getKnjigaById(id:number){
           return this.knjige.find(x=> x.id===id);
@@ -26,6 +24,13 @@ export class KnjigeService {
               (response)=> {
                   console.log(response);
                   console.log(response.json());
+                  const data=response.json();
+                  this.knjige=[];
+                  for(let x of data){
+                    this.knjige.push(new Knjiga(x.id,x.naslov,x.opis,'https://evrobook.rs/fajlovi/product/jezeva-kucica-jezeva-kucica_59c36d949222f.jpg', 4, ['Drama', 'Komedija'])); 
+                  }
+                  console.log(this.knjige);
+                  this.ucitao=true;
                 },
               (error)=>console.log(error)
           );

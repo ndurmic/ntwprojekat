@@ -33,10 +33,10 @@ export class RegisterComponent implements OnInit {
     
     console.log(this.mail+this.password);
     if(this.mail!=null && this.password!=null){
-      this.authService.register(this.mail, this.password).subscribe(
+      this.authService.register(this.mail, this.password,this.ime, this.prezime).subscribe(
         (response) => {
           const data= response.json();
-          console.log(data);
+          console.log("register"+data);
           this.router.navigate(['/login']);
         },
         (error)=>console.log(error)

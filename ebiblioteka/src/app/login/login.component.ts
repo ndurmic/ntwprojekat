@@ -29,9 +29,10 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.mail, this.password).subscribe(
         (response) => {
           const data= response.json();
-          console.log(data);
+          console.log("login"+data);
           if(response!=null){
-            this.authService.onLoggedInSuccesfully('admin');
+            this.authService.token=data.accessToken;
+            this.authService.onLoggedInSuccesfully('user');
           }
           else{
             this.message="Username or password was incorrect";
